@@ -35,7 +35,8 @@ CREATE TABLE ClientesMayoreo (
 CREATE TABLE Productos (
     id_producto INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
-    precio_menudeo DECIMAL(10, 2) NOT NULL
+    precio_menudeo DECIMAL(10, 2) NOT NULL,
+    imagen_url VARCHAR(255) NOT NULL
 );
 
 -- Tabla de PreciosMayoreo (Precios personalizados para clientes de mayoreo)
@@ -119,3 +120,5 @@ CREATE TABLE ComponentesPaquetes (
     cantidad INT NOT NULL,
     FOREIGN KEY (id_paquete) REFERENCES Paquetes(id_paquete)
 );
+
+

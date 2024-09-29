@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CardsComponent } from '../../components/cards/cards.component';
 import { CartComponent } from '../../components/cart/cart.component';
+import { ProductService } from '../../services/product.service';
+import { Producto } from '../../models/producto';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -15,44 +18,30 @@ import { CartComponent } from '../../components/cart/cart.component';
 })
 export class ProductsComponent {
 
-  pinatas = [
-    {
-      image: '../../../assets/pinatas/pinata_1.jpg',
-      name: 'Piñata 1',
-      price: '$150.00'
-    },
-    {
-      image: '../../../assets/pinatas/pinata_2.jpg',
-      name: 'Piñata 2',
-      price: '$130.00'
-    },
-    {
-      image: '../../../assets/pinatas/pinata_3.jpg',
-      name: 'Piñata 3',
-      price: '$120.00'
-    },
-    {
-      image: '../../../assets/pinatas/pinata_1.jpg',
-      name: 'Piñata 4',
-      price: '$250.00'
-    },
-    {
-      image: '../../../assets/pinatas/pinata_2.jpg',
-      name: 'Piñata 5',
-      price: '$230.00'
-    },
-    {
-      image: '../../../assets/pinatas/pinata_3.jpg',
-      name: 'Piñata 6',
-      price: '$220.00'
-    }
-  ];
-
-  // Lista de productos agregados al carrito
+  productos: Producto[] = [];
   cartItems: any[] = [];
+  tipoUsuario: string = '';
+  currentUser: any = null;
 
-  // Función para agregar una piñata al carrito
-  addToCart(pinata: any) {
-    this.cartItems.push(pinata);
+  constructor(private productService: ProductService, private authService: AuthService) { }
+
+  ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser();
+    this.tipoUsuario = this.currentUser?.tipo_usuario || 'menudeo';  // Si no hay usuario, se asume menudeo
+
+    // Llamar al servicio de productos para obtener los productos según el tipo de usuario
+    this.productService.getProductos(this.tipoUsuario, this.currentUser?.id_usuario).subscribe(
+      (data: Producto[]) => {
+        this.productos = data;
+        console.log('Productos obtenidos:', this.productos);
+      },
+      (error) => {
+        console.error('Error al obtener los productos', error);
+      }
+    );
+  }
+
+  addToCart(producto: any) {
+    this.cartItems.push(producto);
   }
 }

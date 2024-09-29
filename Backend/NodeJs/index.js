@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
@@ -65,6 +64,33 @@ app.post('/login', (req, res) => {
         res.json(usuarioRes);
     });
 });
+
+app.get('/productos', (req, res) => {
+    const { id_usuario, tipo_usuario } = req.query;
+
+    let query = '';
+
+    if (tipo_usuario === 'mayoreo') {
+        query = `
+      SELECT p.id_producto, p.nombre, pm.precio AS precio, p.imagen_url 
+      FROM Productos p 
+      JOIN PreciosMayoreo pm ON p.id_producto = pm.id_producto 
+      WHERE pm.id_usuario = ?`;
+    } else {
+        query = `
+      SELECT id_producto, nombre, precio_menudeo AS precio, imagen_url 
+      FROM Productos`;
+    }
+
+    db.query(query, [id_usuario], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al obtener los productos', error: err });
+        }
+
+        res.json(results);
+    });
+});
+
 
 // Iniciar el servidor
 app.listen(port, () => {

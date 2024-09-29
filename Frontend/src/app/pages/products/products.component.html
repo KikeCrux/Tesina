@@ -9,8 +9,11 @@
     <div class="col-lg-9">
       <h1 class="text-center mb-4">Nuestras Piñatas</h1>
       <div class="row">
-        <div *ngFor="let pinata of pinatas" class="col-lg-4 col-md-6 mb-4">
-          <app-cards [image]="pinata.image" [price]="pinata.price" [name]="pinata.name" (productAdded)="addToCart(pinata)"></app-cards>
+        <div *ngFor="let producto of productos" class="col-lg-4 col-md-6 mb-4">
+          <app-cards
+            [image]="producto.imagen_url ? '../../../assets/pinatas/' + producto.imagen_url : '../../../assets/pinatas/pinatas_mario_bros.jpg'"
+            [price]="producto.precio" [name]="producto.nombre" (productAdded)="addToCart(producto)">
+          </app-cards>
         </div>
       </div>
     </div>
