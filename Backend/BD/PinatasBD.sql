@@ -8,7 +8,7 @@ USE PinatasDB;
 CREATE TABLE Usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     correo VARCHAR(255) NOT NULL,
-    contraseña VARCHAR(255) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
     nombre_cliente VARCHAR(255) NOT NULL,
     telefono VARCHAR(20) NOT NULL,
     tipo_usuario ENUM('mayoreo', 'menudeo') NOT NULL

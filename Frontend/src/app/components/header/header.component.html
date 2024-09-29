@@ -5,9 +5,9 @@
       <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
       Piñatas Magics
     </a>
-    
-    <!-- Botón de menú hamburguesa para pantallas pequeñas -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -26,8 +26,18 @@
         <li class="nav-item">
           <a class="nav-link" href="/contactanos">Contacto</a>
         </li>
-        <li class="nav-item">
+
+        <!-- Mostrar Bienvenido o el botón de iniciar sesión -->
+        <li *ngIf="!currentUser" class="nav-item">
           <a class="nav-link" href="/login">Iniciar</a>
+        </li>
+
+        <!-- Mostrar Bienvenido y el botón de cerrar sesión si está logueado -->
+        <li *ngIf="currentUser" class="nav-item">
+          <span class="nav-link"> {{ currentUser.nombre_cliente }}</span>
+        </li>
+        <li *ngIf="currentUser" class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Cerrar sesión</a>
         </li>
       </ul>
     </div>
