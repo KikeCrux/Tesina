@@ -37,7 +37,6 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
     const { correo, contrasena } = req.body;
 
-    // Hashear la contraseña ingresada usando SHA-256
     const hashedPassword = crypto.createHash('sha256').update(contrasena).digest('hex');
 
     const query = 'SELECT * FROM Usuarios WHERE correo = ?';
@@ -52,21 +51,18 @@ app.post('/login', (req, res) => {
 
         const usuario = results[0];
 
-        // Comparar la contraseña hasheada con la contraseña almacenada en la base de datos
         if (hashedPassword !== usuario.contrasena) {
             return res.status(401).json({ message: 'Contraseña incorrecta' });
         }
 
-        // Si las credenciales son correctas, devolver la información del usuario
-        res.json({
-            message: 'Inicio de sesión exitoso',
-            usuario: {
-                id_usuario: usuario.id_usuario,
-                correo: usuario.correo,
-                nombre_cliente: usuario.nombre_cliente,
-                tipo_usuario: usuario.tipo_usuario
-            }
-        });
+        const usuarioRes = {
+            id_usuario: usuario.id_usuario,
+            correo: usuario.correo,
+            nombre_cliente: usuario.nombre_cliente,
+            tipo_usuario: usuario.tipo_usuario
+        };
+
+        res.json(usuarioRes);
     });
 });
 

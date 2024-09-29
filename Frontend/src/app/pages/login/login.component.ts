@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,11 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login(this.correo, this.contrasena).subscribe(
-      (response) => {
-        this.authService.saveUserSession(response.usuario);
-        this.router.navigate(['']);
+      (usuario: Usuario) => {
+        setTimeout(() => {
+          this.authService.saveUserSession(usuario);
+          this.router.navigate(['']);
+        }, 1000);
       },
       (error) => {
         this.errorMessage = error.error.message;

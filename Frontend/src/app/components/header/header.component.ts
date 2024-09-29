@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser: any = null;
+  currentUser: Usuario | null = null;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -22,15 +23,17 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  // Método para verificar el estado del usuario
   checkUserStatus() {
     this.currentUser = this.authService.getCurrentUser();
   }
 
+  // Método para cerrar sesión
   logout() {
     setTimeout(() => {
       this.authService.logout();
       this.checkUserStatus();
       window.location.reload();
-    }, 1000);
+    }, 1500);
   }
 }
