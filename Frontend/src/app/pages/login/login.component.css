@@ -1,0 +1,25 @@
+body {
+    min-height: 69vh;
+}
+
+.container {
+    padding-top: 50px;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+input {
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}

@@ -1,9 +1,18 @@
-<div class="container my-5">
-  <h1 class="text-center mb-4">Nuestras Piñatas</h1>
-
+<div class="container-fluid my-5">
   <div class="row">
-    <div *ngFor="let pinata of pinatas" class="col-lg-3 col-md-6 mb-4">
-        <app-cards [image]="pinata.image" [price]="pinata.price"></app-cards>
+    <!-- Sidebar del carrito -->
+    <div class="col-lg-3">
+      <app-cart [cartItems]="cartItems"></app-cart>
+    </div>
+
+    <!-- Contenedor principal para las piñatas -->
+    <div class="col-lg-9">
+      <h1 class="text-center mb-4">Nuestras Piñatas</h1>
+      <div class="row">
+        <div *ngFor="let pinata of pinatas" class="col-lg-4 col-md-6 mb-4">
+          <app-cards [image]="pinata.image" [price]="pinata.price" [name]="pinata.name" (productAdded)="addToCart(pinata)"></app-cards>
+        </div>
+      </div>
     </div>
   </div>
 </div>
