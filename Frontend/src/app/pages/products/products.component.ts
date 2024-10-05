@@ -23,15 +23,20 @@ export class ProductsComponent implements OnInit {
   cartItems: any[] = [];
   tipoUsuario: string = '';
   currentUser: any = null;
+  isAuthenticated: boolean = false;
 
-  constructor(private productService: ProductService, private authService: AuthService) { }
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    // Verificar si el usuario ha iniciado sesión
     this.currentUser = this.authService.getCurrentUser();
+    this.isAuthenticated = !!this.currentUser;
     this.tipoUsuario = this.currentUser?.tipo_usuario || 'menudeo';
 
-    this.loadCartFromLocalStorage();
-
+    // Cargar los productos del catálogo
     this.productService.getProductos(this.tipoUsuario, this.currentUser?.id_usuario).subscribe(
       (data: Producto[]) => {
         this.productos = data;
@@ -40,26 +45,33 @@ export class ProductsComponent implements OnInit {
         console.error('Error al obtener los productos', error);
       }
     );
+
+    // Si el usuario está autenticado, cargar el carrito desde localStorage
+    if (this.isAuthenticated) {
+      this.loadCartFromLocalStorage();
+    }
   }
 
+  // Método para agregar productos al carrito
   addToCart(producto: any) {
-    this.cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    if (this.isAuthenticated) {
+      const existingItem = this.cartItems.find(item => item.name === producto.nombre);
 
-    const existingItem = this.cartItems.find(item => item.name === producto.nombre);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        const cartItem = {
+          image: producto.imagen_url ? '../../../assets/pinatas/' + producto.imagen_url : '../../../assets/404-page.png',
+          name: producto.nombre,
+          price: this.tipoUsuario === 'mayoreo' ? producto.precio_mayoreo : producto.precio,
+          quantity: 1
+        };
+        this.cartItems.push(cartItem);
+      }
 
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      const cartItem = {
-        image: producto.imagen_url ? '../../../assets/pinatas/' + producto.imagen_url : '../../../assets/404-page.png',
-        name: producto.nombre,
-        price: producto.precio,
-        quantity: 1
-      };
-      this.cartItems.push(cartItem);
+      // Guardar el carrito actualizado en localStorage
+      this.saveCartToLocalStorage();
     }
-
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
   // Guardar el carrito en localStorage

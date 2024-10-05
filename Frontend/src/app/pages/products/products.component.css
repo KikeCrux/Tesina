@@ -1,0 +1,26 @@
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.container-pinata {
+    flex-grow: 1;
+    max-width: calc(100% - 300px);
+    margin: 0 auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.app-cart {
+    position: sticky;
+    top: 20px;
+    max-width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.container-pinata .col-lg-3,
+.container-pinata .col-lg-4 {
+    padding: 15px;
+}

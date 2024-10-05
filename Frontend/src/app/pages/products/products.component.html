@@ -1,20 +1,20 @@
-<div class="container-fluid my-5">
-  <div class="row">
-    <!-- Sidebar del carrito -->
-    <div class="col-lg-3">
-      <app-cart [cartItems]="cartItems"></app-cart>
-    </div>
+<div class="container-fluid my-5 d-flex align-items-start">
+  <!-- Sidebar del carrito: solo se muestra si el usuario ha iniciado sesión -->
+  <div class="col-lg-3" *ngIf="isAuthenticated">
+    <app-cart [cartItems]="cartItems"></app-cart>
+  </div>
 
-    <!-- Contenedor principal para las piñatas -->
-    <div class="col-lg-9">
-      <h1 class="text-center mb-4">Nuestras Piñatas</h1>
-      <div class="row">
-        <div *ngFor="let producto of productos" class="col-lg-4 col-md-6 mb-4">
-          <app-cards
-            [image]="producto.imagen_url ? '../../../assets/pinatas/' + producto.imagen_url : '../../../assets/pinatas/pinatas_mario_bros.jpg'"
-            [price]="producto.precio" [name]="producto.nombre" (productAdded)="addToCart(producto)">
-          </app-cards>
-        </div>
+  <!-- Contenedor principal para las piñatas -->
+  <div [class.col-lg-9]="isAuthenticated" [class.col-lg-12]="!isAuthenticated" class="container-pinata">
+    <h1 class="text-center mb-4">Nuestras Piñatas</h1>
+    <div class="row">
+      <!-- Cambiar a 4 columnas si no está autenticado -->
+      <div *ngFor="let producto of productos" [class.col-lg-3]="!isAuthenticated" [class.col-lg-4]="isAuthenticated"
+        class="col-md-6 mb-4">
+        <app-cards
+          [image]="producto.imagen_url ? '../../../assets/pinatas/' + producto.imagen_url : '../../../assets/pinatas/pinatas_mario_bros.jpg'"
+          [price]="producto.precio" [name]="producto.nombre" (productAdded)="addToCart(producto)">
+        </app-cards>
       </div>
     </div>
   </div>
