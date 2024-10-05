@@ -1,5 +1,6 @@
 <div class="card h-100">
-  <img [src]="'../../../assets/pinatas/' + image" (error)="onImageError($event)" alt="{{ name }}" class="img-fluid">
+  <img [ngSrc]="'../../../assets/pinatas/' + image" (error)="onImageError($event)" width="340" height="350" priority
+    alt="{{ name }}" class="img-fluid img-render">
   <div class="card-body">
     <h5 class="card-title">{{ name }}</h5>
     <p class="card-text">Precio ${{ price }}</p>

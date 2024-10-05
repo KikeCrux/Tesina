@@ -1,9 +1,10 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cards',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.css'
 })
@@ -17,7 +18,7 @@ export class CardsComponent {
 
   //Aqui va una imagen default en caso de no encontrarlo
   onImageError(event: any) {
-    event.target.src = '../../../assets/pinatas/pinata_mario_bros.jpg';
+    event.target.src = '../../../assets/404-page.png';
   }
 
   addToCart() {

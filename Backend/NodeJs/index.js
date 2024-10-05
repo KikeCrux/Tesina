@@ -72,7 +72,6 @@ app.get('/productos', (req, res) => {
     let query = '';
     let queryParams = [];
 
-    // Condición para mostrar todos los productos si no hay id_usuario
     if (!id_usuario) {
         query = `
         SELECT id_producto, nombre, precio_menudeo AS precio, imagen_url 
