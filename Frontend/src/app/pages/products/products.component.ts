@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardsComponent } from '../../components/cards/cards.component';
 import { CartComponent } from '../../components/cart/cart.component';
 import { ProductService } from '../../services/product.service';
@@ -17,7 +17,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
 
   productos: Producto[] = [];
   cartItems: any[] = [];
@@ -30,7 +30,8 @@ export class ProductsComponent {
     this.currentUser = this.authService.getCurrentUser();
     this.tipoUsuario = this.currentUser?.tipo_usuario || 'menudeo';
 
-    // Llamar al servicio de productos para obtener los productos según el tipo de usuario
+    this.loadCartFromLocalStorage();
+
     this.productService.getProductos(this.tipoUsuario, this.currentUser?.id_usuario).subscribe(
       (data: Producto[]) => {
         this.productos = data;
@@ -42,6 +43,35 @@ export class ProductsComponent {
   }
 
   addToCart(producto: any) {
-    this.cartItems.push(producto);
+    this.cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+    const existingItem = this.cartItems.find(item => item.name === producto.nombre);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      const cartItem = {
+        image: producto.imagen_url ? '../../../assets/pinatas/' + producto.imagen_url : '../../../assets/404-page.png',
+        name: producto.nombre,
+        price: producto.precio,
+        quantity: 1
+      };
+      this.cartItems.push(cartItem);
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  // Guardar el carrito en localStorage
+  saveCartToLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  // Cargar el carrito desde localStorage
+  loadCartFromLocalStorage() {
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+      this.cartItems = JSON.parse(savedCart);
+    }
   }
 }

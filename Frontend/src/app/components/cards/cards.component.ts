@@ -1,10 +1,10 @@
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cards',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, CommonModule],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.css'
 })
