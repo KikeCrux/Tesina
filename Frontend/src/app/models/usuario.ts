@@ -5,3 +5,11 @@ export interface Usuario {
     telefono: string;
     tipo_usuario: 'mayoreo' | 'menudeo';
 }
+
+export interface UsuarioRegistro {
+    nombre_cliente: string;
+    correo: string;
+    telefono: string;
+    contrasena: string;
+    tipo_usuario: 'mayoreo' | 'menudeo';
+}

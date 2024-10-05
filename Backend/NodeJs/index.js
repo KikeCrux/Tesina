@@ -8,15 +8,15 @@ const port = 3000;
 
 // Habilitar CORS para todas las solicitudes
 app.use(cors());
-app.use(express.json());            // Middleware para manejar JSON
+app.use(express.json());
 
 // Conexión a la base de datos MySQL con credenciales manuales
 const db = mysql.createConnection({
-    host: 'localhost',              // Reemplaza con tu host
-    user: 'root',                   // Reemplaza con tu usuario
-    password: 'Sandia2016.!',       // Reemplaza con tu contraseña
-    database: 'PinatasDB',          // Reemplaza con el nombre de tu base de datos
-    port: 3307                      // Reemplaza con el puerto correcto (3306 es el predeterminado para MySQL)
+    host: '85.31.234.90',               // Reemplaza con tu host
+    user: 'kikecrux',                   // Reemplaza con tu usuario
+    password: 'Mango2016.!',           // Reemplaza con tu contraseña
+    database: 'pinatasdb',              // Reemplaza con el nombre de tu base de datos (ahora en minúsculas)
+    port: 3306                          // Reemplaza con el puerto correcto (3306 es el predeterminado para MySQL)
 });
 
 db.connect((err) => {
@@ -38,7 +38,7 @@ app.post('/login', (req, res) => {
 
     const hashedPassword = crypto.createHash('sha256').update(contrasena).digest('hex');
 
-    const query = 'SELECT * FROM Usuarios WHERE correo = ?';
+    const query = 'SELECT * FROM usuarios WHERE correo = ?';
     db.query(query, [correo], (err, results) => {
         if (err) {
             return res.status(500).json({ message: 'Error en el servidor', error: err });
@@ -65,6 +65,7 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Ruta para obtener los productos según el tipo de usuario
 app.get('/productos', (req, res) => {
     const { id_usuario, tipo_usuario } = req.query;
 
@@ -73,13 +74,13 @@ app.get('/productos', (req, res) => {
     if (tipo_usuario === 'mayoreo') {
         query = `
       SELECT p.id_producto, p.nombre, pm.precio AS precio, p.imagen_url 
-      FROM Productos p 
-      JOIN PreciosMayoreo pm ON p.id_producto = pm.id_producto 
+      FROM productos p 
+      JOIN preciosmayoreo pm ON p.id_producto = pm.id_producto 
       WHERE pm.id_usuario = ?`;
     } else {
         query = `
       SELECT id_producto, nombre, precio_menudeo AS precio, imagen_url 
-      FROM Productos`;
+      FROM productos`;
     }
 
     db.query(query, [id_usuario], (err, results) => {
@@ -91,6 +92,35 @@ app.get('/productos', (req, res) => {
     });
 });
 
+// Ruta para registrar usuarios de menudeo
+app.post('/register', (req, res) => {
+    const { correo, contrasena, nombre_cliente, telefono, tipo_usuario } = req.body;
+
+    const queryCheck = 'SELECT * FROM usuarios WHERE correo = ?';
+
+    db.query(queryCheck, [correo], (err, results) => {
+        if (err) {
+            console.error('Error en la consulta de verificación del correo:', err);
+            return res.status(500).json({ message: 'Error en el servidor', error: err });
+        }
+
+        if (results.length > 0) {
+            return res.status(400).json({ message: 'El correo ya está registrado' });
+        }
+
+        const hashedPassword = crypto.createHash('sha256').update(contrasena).digest('hex');
+
+        const queryInsert = `INSERT INTO usuarios (correo, contrasena, nombre_cliente, telefono, tipo_usuario)
+                             VALUES (?, ?, ?, ?, ?)`;
+        db.query(queryInsert, [correo, hashedPassword, nombre_cliente, telefono, tipo_usuario], (err, result) => {
+            if (err) {
+                console.error('Error al insertar el usuario:', err);
+                return res.status(500).json({ message: 'Error al registrar el usuario', error: err });
+            }
+            res.status(201).json({ message: 'Usuario registrado exitosamente' });
+        });
+    });
+});
 
 // Iniciar el servidor
 app.listen(port, () => {

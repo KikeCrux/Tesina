@@ -9,7 +9,8 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     CardsComponent,
     CartComponent
   ],
@@ -27,13 +28,12 @@ export class ProductsComponent {
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
-    this.tipoUsuario = this.currentUser?.tipo_usuario || 'menudeo';  // Si no hay usuario, se asume menudeo
+    this.tipoUsuario = this.currentUser?.tipo_usuario || 'menudeo';
 
     // Llamar al servicio de productos para obtener los productos según el tipo de usuario
     this.productService.getProductos(this.tipoUsuario, this.currentUser?.id_usuario).subscribe(
       (data: Producto[]) => {
         this.productos = data;
-        console.log('Productos obtenidos:', this.productos);
       },
       (error) => {
         console.error('Error al obtener los productos', error);

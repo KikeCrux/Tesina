@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Usuario } from '../models/usuario';
+import { Usuario, UsuarioRegistro } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +42,10 @@ export class AuthService {
   // Verificar si hay un usuario logueado
   isUserLoggedIn(): boolean {
     return !!sessionStorage.getItem('currentUser');
+  }
+
+  register(usuario: UsuarioRegistro) {
+    const endpoint = `${this.baseUrl}/register`;
+    return this.http.post(endpoint, usuario);
   }
 }
