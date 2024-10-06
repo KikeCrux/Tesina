@@ -12,10 +12,10 @@ app.use(express.json());
 
 // Conexión a la base de datos MySQL con credenciales manuales
 const db = mysql.createConnection({
-    host: '85.31.234.90',               // Reemplaza con tu host
-    user: 'kikecrux',                   // Reemplaza con tu usuario
-    password: 'Mango2016.!',           // Reemplaza con tu contraseña
-    database: 'pinatasdb',              // Reemplaza con el nombre de tu base de datos (ahora en minúsculas)
+    host: '',                           // Reemplaza con tu host
+    user: '',                           // Reemplaza con tu usuario
+    password: '',                       // Reemplaza con tu contraseña
+    database: '',                       // Reemplaza con el nombre de tu base de datos (ahora en minúsculas)
     port: 3306                          // Reemplaza con el puerto correcto (3306 es el predeterminado para MySQL)
 });
 
