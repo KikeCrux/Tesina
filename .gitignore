@@ -1,5 +1,6 @@
 # Ignorar node_modules en cualquier nivel
 **/node_modules/
+**/.env
 
 # Compiled output
 **/dist/
