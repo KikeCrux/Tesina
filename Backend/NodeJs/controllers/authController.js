@@ -1,9 +1,15 @@
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator');
 
 // Controlador para el inicio de sesión
 exports.login = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { correo, contrasena } = req.body;
 
     const query = 'SELECT * FROM usuarios WHERE correo = ?';
@@ -41,6 +47,11 @@ exports.login = (req, res) => {
 
 // Controlador para el registro de usuarios
 exports.register = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { correo, contrasena, nombre_cliente, telefono, tipo_usuario } = req.body;
 
     const queryCheck = 'SELECT * FROM usuarios WHERE correo = ?';
@@ -73,7 +84,8 @@ exports.verifyToken = (req, res, next) => {
 
     jwt.verify(token.split(' ')[1], process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-            return res.status(401).json({ message: 'Token inválido o expirado' });
+            const message = err.name === 'TokenExpiredError' ? 'El token ha expirado' : 'Token inválido';
+            return res.status(401).json({ message });
         }
         req.user = decoded;
         next();
