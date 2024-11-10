@@ -18,7 +18,7 @@ export class RegisterComponent {
     contrasena: '',
     nombre_cliente: '',
     telefono: '',
-    tipo_usuario: 'menudeo'
+    tipo_usuario: 'menudeo' // Asumimos que solo usuarios de menudeo se registran desde el frontend
   };
 
   errorMessage: string = '';
@@ -26,13 +26,17 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   onRegister() {
+    this.errorMessage = ''; // Limpiar mensajes de error previos
+
+    // Llamar al servicio de autenticación para registrar al usuario
     this.authService.register(this.usuario).subscribe(
       (response) => {
+        // Redirigir al inicio de sesión tras un registro exitoso
         this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Error al registrar', error);
-        this.errorMessage = error.error?.message || 'Error en el registro';
+        this.errorMessage = error.error?.message || 'Error en el registro. Inténtalo nuevamente.';
       }
     );
   }

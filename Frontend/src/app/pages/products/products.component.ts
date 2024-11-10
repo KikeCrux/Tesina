@@ -32,12 +32,20 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     // Verificar si el usuario ha iniciado sesión
-    this.currentUser = this.authService.getCurrentUser();
-    this.isAuthenticated = !!this.currentUser;
-    this.tipoUsuario = this.currentUser?.tipo_usuario || 'menudeo';
+    this.isAuthenticated = this.authService.isUserLoggedIn();
+
+    if (this.isAuthenticated) {
+      const currentUser = this.authService.decodeToken(); // Decodificar el token si es necesario
+      this.tipoUsuario = currentUser?.tipo_usuario || 'menudeo';
+
+      // Si el usuario está autenticado, cargar el carrito desde localStorage
+      this.loadCartFromLocalStorage();
+    } else {
+      this.tipoUsuario = 'menudeo';
+    }
 
     // Cargar los productos del catálogo
-    this.productService.getProductos(this.tipoUsuario, this.currentUser?.id_usuario).subscribe(
+    this.productService.getProductos(this.tipoUsuario, this.currentUser?.id_usuario || 0).subscribe(
       (data: Producto[]) => {
         this.productos = data;
       },
@@ -45,12 +53,8 @@ export class ProductsComponent implements OnInit {
         console.error('Error al obtener los productos', error);
       }
     );
-
-    // Si el usuario está autenticado, cargar el carrito desde localStorage
-    if (this.isAuthenticated) {
-      this.loadCartFromLocalStorage();
-    }
   }
+
 
   // Método para agregar productos al carrito
   addToCart(producto: any) {

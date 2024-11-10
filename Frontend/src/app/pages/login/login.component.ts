@@ -21,15 +21,14 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   onLogin() {
+    this.errorMessage = '';
+
     this.authService.login(this.correo, this.contrasena).subscribe(
-      (usuario: Usuario) => {
-        setTimeout(() => {
-          this.authService.saveUserSession(usuario);
-          this.router.navigate(['']);
-        }, 1000);
+      () => {
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.error?.message || 'Error al iniciar sesión. Inténtalo nuevamente.';
       }
     );
   }

@@ -13,3 +13,7 @@ export interface UsuarioRegistro {
     contrasena: string;
     tipo_usuario: 'mayoreo' | 'menudeo';
 }
+
+export interface Usuario extends UsuarioRegistro {
+    id_usuario: number;
+}

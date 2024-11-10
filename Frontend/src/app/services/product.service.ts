@@ -8,13 +8,14 @@ import { Producto } from '../models/producto';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/productos';
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
   // Obtener los productos
-  getProductos(tipoUsuario: string, idUsuario: number): Observable<Producto[]> {
-    const endpoint = `${this.apiUrl}?tipo_usuario=${tipoUsuario}&id_usuario=${idUsuario}`;
-    return this.http.get<Producto[]>(endpoint);
+  getProductos(tipoUsuario: string, idUsuario?: number): Observable<Producto[]> {
+    const endpoint = `${this.baseUrl}/api/productos`;
+    const params = { tipo_usuario: tipoUsuario, id_usuario: idUsuario?.toString() || '' };
+    return this.http.get<Producto[]>(endpoint, { params });
   }
 }

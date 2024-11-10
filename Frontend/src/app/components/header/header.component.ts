@@ -22,18 +22,9 @@ export class HeaderComponent implements OnInit {
       this.currentUser = user;
     });
   }
-
-  // Método para verificar el estado del usuario
-  checkUserStatus() {
-    this.currentUser = this.authService.getCurrentUser();
-  }
-
   // Método para cerrar sesión
   logout() {
-    setTimeout(() => {
-      this.authService.logout();
-      this.checkUserStatus();
-      window.location.reload();
-    }, 1500);
+    this.authService.logout();
+    window.location.reload();
   }
 }
