@@ -1,19 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg" style="background-color: #B5E4FE; margin: 0; padding: 0;">
   <div class="container-fluid">
     <!-- Logo del negocio -->
-    <a class="navbar-brand" href="#">
-      <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
-      Piñatas Magics
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="../../../assets/recursos/logo-pinata.png" alt="Logo" class="d-inline-block align-text-top">
     </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Enlaces del menú -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+    <!-- Buscador y menú -->
+    <div class="collapse navbar-collapse ms-3" id="navbarNav">
+      <!-- Formulario de búsqueda -->
+      <form class="d-flex me-auto search-form" role="search">
+        <input class="form-control me-0" type="search" placeholder="Buscar..." aria-label="Search">
+        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #710A85"></i></button>
+      </form>
+      <!-- Enlaces del menú -->
+      <ul class="navbar-nav ms-3" style="font-size: large;">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Inicio</a>
         </li>
@@ -24,22 +24,29 @@
           <a class="nav-link" href="#">Paquetes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/contactanos">Contacto</a>
+          <a class="nav-link" href="/contactanos">Contactáctanos</a>
         </li>
-
-        <!-- Mostrar Bienvenido o el botón de iniciar sesión -->
         <li *ngIf="!currentUser" class="nav-item">
-          <a class="nav-link" href="/login">Iniciar</a>
+          <a class="nav-link" href="/login" title="Iniciar sesión"><i class="fa-solid fa-right-to-bracket"></i></a>
         </li>
-
-        <!-- Mostrar Bienvenido y el botón de cerrar sesión si está logueado -->
         <li *ngIf="currentUser" class="nav-item">
           <span class="nav-link"> {{ currentUser.nombre_cliente }}</span>
         </li>
         <li *ngIf="currentUser" class="nav-item">
-          <a class="nav-link" href="#" (click)="logout()">Cerrar sesión</a>
+          <a class="nav-link" href="#" (click)="logout()" title="Cerrar sesión"><i class="fa-solid fa-right-from-bracket"></i></a>
         </li>
       </ul>
     </div>
+
+    <!-- Botón para dispositivos móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
 </nav>
+
+<!-- Efecto Wavy -->
+<div class="wave-container">
+  <img src="../../../assets/recursos/wave-navbar.svg" alt="Wave" class="wave">
+</div>
