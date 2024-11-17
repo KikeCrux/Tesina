@@ -1,7 +1,13 @@
+const { validationResult } = require('express-validator');
 const db = require('../config/db');
 
 // Controlador para obtener los productos
 exports.getProducts = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { id_usuario, tipo_usuario } = req.query;
     let query = '';
     let queryParams = [];
@@ -24,5 +30,115 @@ exports.getProducts = (req, res) => {
             return res.status(500).json({ message: 'Error al obtener los productos', error: err });
         }
         res.json(results);
+    });
+};
+
+// Controlador para crear un producto
+exports.createProduct = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { nombre, precio_menudeo, imagen_url } = req.body;
+
+    const query = `INSERT INTO productos (nombre, precio_menudeo, imagen_url) VALUES (?, ?, ?)`;
+    db.query(query, [nombre, precio_menudeo, imagen_url || null], (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al crear el producto', error: err });
+        }
+        res.status(201).json({ message: 'Producto creado exitosamente', id_producto: result.insertId });
+    });
+};
+
+// Controlador para actualizar un producto
+exports.updateProduct = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { id_producto } = req.params;
+    const { nombre, precio_menudeo, imagen_url } = req.body;
+
+    const query = `
+    UPDATE productos 
+    SET nombre = ?, precio_menudeo = ?, imagen_url = ? 
+    WHERE id_producto = ?`;
+
+    db.query(query, [nombre, precio_menudeo, imagen_url || null, id_producto], (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al actualizar el producto', error: err });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Producto no encontrado' });
+        }
+        res.status(200).json({ message: 'Producto actualizado exitosamente' });
+    });
+};
+
+// Controlador para eliminar un producto
+exports.deleteProduct = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { id_producto } = req.params;
+
+    const query = `DELETE FROM productos WHERE id_producto = ?`;
+    db.query(query, [id_producto], (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al eliminar el producto', error: err });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Producto no encontrado' });
+        }
+        res.status(200).json({ message: 'Producto eliminado exitosamente' });
+    });
+};
+
+// Controlador para asignar precios personalizados de mayoreo
+exports.assignWholesalePrice = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { id_usuario, id_producto, precio } = req.body;
+
+    const query = `
+    INSERT INTO preciosmayoreo (id_usuario, id_producto, precio) 
+    VALUES (?, ?, ?) 
+    ON DUPLICATE KEY UPDATE precio = VALUES(precio)`;
+
+    db.query(query, [id_usuario, id_producto, precio], (err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al asignar precio personalizado', error: err });
+        }
+        res.status(200).json({ message: 'Precio personalizado asignado exitosamente' });
+    });
+};
+
+// Controlador para obtener precios personalizados de mayoreo
+exports.getWholesalePrices = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { id_usuario } = req.query;
+
+    const query = `
+    SELECT p.nombre, pm.precio 
+    FROM preciosmayoreo pm 
+    JOIN productos p ON pm.id_producto = p.id_producto 
+    WHERE pm.id_usuario = ?`;
+
+    db.query(query, [id_usuario], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al obtener precios personalizados', error: err });
+        }
+        res.status(200).json(results);
     });
 };

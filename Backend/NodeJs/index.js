@@ -12,10 +12,14 @@ app.use(express.json());
 // Importar las rutas
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
+const wholesaleClientRoutes = require('./routes/wholesaleClientRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 // Usar las rutas
 app.use('/api/auth', authRoutes);
 app.use('/api', productRoutes);
+app.use('/api', wholesaleClientRoutes);
+app.use('/api', orderRoutes);
 
 // Ruta básica de prueba
 app.get('/', (req, res) => {
