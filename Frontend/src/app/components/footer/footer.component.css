@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+h3 {
+    font-family: 'Righteous';
+    font-size: 2.5rem;
+    color: black;
+    text-shadow: 2px 2px #FFF;
+    margin-bottom: 15px;
+  }
+
 body {
     font-family: Arial, sans-serif;
 }
@@ -44,12 +52,31 @@ body {
     margin-bottom: 5px;
 }
 
-.social-icons a {
-    text-decoration: none;
-    color: #333;
-    margin-right: 10px;
-    font-size: 1.5em;
-}
+.social-icons {
+    display: flex; /* Alinea los íconos en fila */
+    justify-content: center; /* Centra los íconos horizontalmente */
+    gap: 10px; /* Espacio entre los íconos */
+  }
+  
+  .footer-icon {
+    display: flex; /* Asegura que el contenido esté centrado */
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Ancho del círculo */
+    height: 50px; /* Alto del círculo */
+    border-radius: 50%; /* Hace que el botón sea circular */
+    background-color: #f39c12; /* Color de fondo */
+    color: white; /* Color del ícono */
+    text-decoration: none; /* Elimina subrayados en el enlace */
+    font-size: 20px; /* Tamaño del ícono */
+    transition: background-color 0.3s, transform 0.2s; /* Animación de hover */
+  }
+  
+  .footer-icon:hover {
+    background-color: #e67e22; /* Cambia el color de fondo al pasar el mouse */
+    transform: scale(1.1); /* Efecto de zoom */
+  }
+  
 
 .newsletter-form {
     display: flex;
@@ -76,15 +103,6 @@ body {
     text-align: center;
     margin-top: 20px;
     font-size: 0.8em;
-}
-
-.footer-icon{
-    background-color: #333;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
 }
 
 i{

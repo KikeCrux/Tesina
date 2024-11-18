@@ -139,6 +139,11 @@ h2{
 
 
 /*Jacky*/
+.productos{
+background-color: #d3f9f7;
+padding: 30px;
+}
+
 .productos .btn{
 background-color: #FFEEA8;
 color: #710A85;
@@ -176,7 +181,25 @@ color: #710A85;
     color: #710A85;
 }
 
+.card-productos{
+  background-color: #F3E9F5;
+  border: 2px solid #B887C1;
+  color: #710A85;
+  max-width: 350px; /* Ajusta el tamaño máximo de las tarjetas */
+  margin: auto; /* Centra las tarjetas dentro de las columnas */
+}
+.carrusel{
+  background: linear-gradient(to bottom, #FFFFFF, #FEC3DF); /* Azul a violeta */
+}
+
+.carrusel .btn{
+
+  color: #710A85;
+  border-color: #710A85; 
+}
+
 .wave-container {
+  width: 100%;
     position: relative; /* Sitúa el wave justo debajo del navbar */
     margin: 0; /* Elimina márgenes */
     padding: 0; /* Elimina padding */
@@ -188,4 +211,10 @@ color: #710A85;
     display: block; /* Elimina espacio adicional causado por imágenes inline */
     width: 100%; /* Asegura que el wave ocupe todo el ancho */
     height: auto; /* Mantiene proporción */
+  }
+
+  .formpromo{
+    padding: 30px;
+    background-color: #FFE7C0;
+    margin-bottom: 30px;
   }
