@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 const db = require('../config/db');
 
-// Controlador para obtener los productos
+// Obtener productos (piñatas individuales)
 exports.getProducts = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -13,8 +13,10 @@ exports.getProducts = (req, res) => {
     let queryParams = [];
 
     if (!id_usuario) {
+        // Mostrar precios de menudeo por defecto si no hay un usuario identificado
         query = `SELECT id_producto, nombre, precio_menudeo AS precio, imagen_url FROM productos`;
     } else if (tipo_usuario === 'mayoreo') {
+        // Mostrar precios personalizados para clientes de mayoreo
         query = `
         SELECT p.id_producto, p.nombre, pm.precio AS precio, p.imagen_url 
         FROM productos p 
@@ -22,6 +24,7 @@ exports.getProducts = (req, res) => {
         WHERE pm.id_usuario = ?`;
         queryParams.push(id_usuario);
     } else {
+        // Mostrar precios de menudeo para clientes regulares
         query = `SELECT id_producto, nombre, precio_menudeo AS precio, imagen_url FROM productos`;
     }
 
@@ -33,7 +36,7 @@ exports.getProducts = (req, res) => {
     });
 };
 
-// Controlador para crear un producto
+// Crear un nuevo producto
 exports.createProduct = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -51,7 +54,7 @@ exports.createProduct = (req, res) => {
     });
 };
 
-// Controlador para actualizar un producto
+// Actualizar un producto
 exports.updateProduct = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -77,7 +80,7 @@ exports.updateProduct = (req, res) => {
     });
 };
 
-// Controlador para eliminar un producto
+// Eliminar un producto
 exports.deleteProduct = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -98,7 +101,7 @@ exports.deleteProduct = (req, res) => {
     });
 };
 
-// Controlador para asignar precios personalizados de mayoreo
+// Asignar precios personalizados de mayoreo
 exports.assignWholesalePrice = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -120,7 +123,7 @@ exports.assignWholesalePrice = (req, res) => {
     });
 };
 
-// Controlador para obtener precios personalizados de mayoreo
+// Obtener precios personalizados de mayoreo
 exports.getWholesalePrices = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

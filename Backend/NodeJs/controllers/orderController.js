@@ -11,24 +11,49 @@ exports.getOrders = (req, res) => {
     });
 };
 
-// Crear un pedido
+// Crear un pedido y sus detalles
 exports.createOrder = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { id_usuario, total_cantidad_pinatas, total_por_cobrar, fecha_esperada_entrega } = req.body;
+    const { id_usuario, total_cantidad_pinatas, total_por_cobrar, fecha_esperada_entrega, detalles } = req.body;
 
-    const query = `
+    const queryOrder = `
     INSERT INTO pedidos (id_usuario, total_cantidad_pinatas, total_por_cobrar, fecha_generacion, fecha_esperada_entrega, estado_pedido)
     VALUES (?, ?, ?, NOW(), ?, 'pendiente')`;
 
-    db.query(query, [id_usuario, total_cantidad_pinatas, total_por_cobrar, fecha_esperada_entrega || null], (err, result) => {
+    // Insertar pedido
+    db.query(queryOrder, [id_usuario, total_cantidad_pinatas, total_por_cobrar, fecha_esperada_entrega || null], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Error al crear el pedido', error: err });
         }
-        res.status(201).json({ message: 'Pedido creado exitosamente', id_pedido: result.insertId });
+
+        const id_pedido = result.insertId;
+
+        // Insertar detalles del pedido si existen
+        if (detalles && detalles.length > 0) {
+            const queryDetails = `
+            INSERT INTO detalles_pedidos (id_pedido, id_producto, cantidad, precio_unitario) 
+            VALUES ?`;
+
+            const detailsValues = detalles.map((detalle) => [
+                id_pedido,
+                detalle.id_producto,
+                detalle.cantidad,
+                detalle.precio_unitario,
+            ]);
+
+            db.query(queryDetails, [detailsValues], (err) => {
+                if (err) {
+                    return res.status(500).json({ message: 'Error al crear los detalles del pedido', error: err });
+                }
+                res.status(201).json({ message: 'Pedido y detalles creados exitosamente', id_pedido });
+            });
+        } else {
+            res.status(201).json({ message: 'Pedido creado exitosamente', id_pedido });
+        }
     });
 };
 
@@ -62,15 +87,24 @@ exports.updateOrderStatus = (req, res) => {
 exports.deleteOrder = (req, res) => {
     const { id_pedido } = req.params;
 
-    const query = `DELETE FROM pedidos WHERE id_pedido = ?`;
-    db.query(query, [id_pedido], (err, result) => {
+    // Primero eliminar detalles del pedido
+    const queryDeleteDetails = `DELETE FROM detalles_pedidos WHERE id_pedido = ?`;
+    db.query(queryDeleteDetails, [id_pedido], (err) => {
         if (err) {
-            return res.status(500).json({ message: 'Error al eliminar el pedido', error: err });
+            return res.status(500).json({ message: 'Error al eliminar los detalles del pedido', error: err });
         }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Pedido no encontrado' });
-        }
-        res.status(200).json({ message: 'Pedido eliminado exitosamente' });
+
+        // Luego eliminar el pedido
+        const queryDeleteOrder = `DELETE FROM pedidos WHERE id_pedido = ?`;
+        db.query(queryDeleteOrder, [id_pedido], (err, result) => {
+            if (err) {
+                return res.status(500).json({ message: 'Error al eliminar el pedido', error: err });
+            }
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'Pedido no encontrado' });
+            }
+            res.status(200).json({ message: 'Pedido eliminado exitosamente' });
+        });
     });
 };
 

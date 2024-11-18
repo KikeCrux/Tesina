@@ -20,6 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api', productRoutes);
 app.use('/api', wholesaleClientRoutes);
 app.use('/api', orderRoutes);
+app.use('/api/paquetes', packageRoutes);
 
 // Ruta básica de prueba
 app.get('/', (req, res) => {
