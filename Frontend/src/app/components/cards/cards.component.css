@@ -1,22 +1,13 @@
-.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    max-width: 100%;
-}
+.card-productos{
+    background-color: #F3E9F5;
+    border: 2px solid #B887C1;
+    color: #710A85;
+    max-width: 350px; /* Ajusta el tamaño máximo de las tarjetas */
+    margin: auto; /* Centra las tarjetas dentro de las columnas */
+  }
 
-.card-img-top {
-    width: 95%;
-    height: 20vh;
-    object-fit: cover;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: auto;
-    width: 100%;
-}
+  .card-productos button{
+    background-color: antiquewhite;
+    border-color: #710A85;
+    color: #710A85;
+  }

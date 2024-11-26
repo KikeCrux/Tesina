@@ -10,9 +10,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CardsComponent {
   @Input() image: string = '';
-  @Input() price: number = 0;
   @Input() name: string = '';
-
+  @Input() description: string = '';
+  @Input() price: number = 0;
   // Emitir un evento cuando se haga clic en "Agregar al carrito"
   @Output() productAdded = new EventEmitter<void>();
 

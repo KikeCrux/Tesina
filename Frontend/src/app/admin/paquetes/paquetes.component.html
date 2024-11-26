@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Paquetes</h1>
+    <div class="paquetes-container">
+        <app-card-paquete *ngFor="let paquete of paquetes" 
+                        [nombre]="paquete.nombre" 
+                        [descripcion]="paquete.descripcion"
+                        [precio]="paquete.precio" 
+                        [decoracion]="paquete.decoracion">
+        </app-card-paquete>
+    </div>
+</div>

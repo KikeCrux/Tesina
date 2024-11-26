@@ -1,0 +1,36 @@
+<div class="dashboard-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="../../../assets/recursos/logo-pinata.png" alt="Logo" class="logo" />
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="menu-item" routerLink="/dashboard/paquetes" routerLinkActive="active">
+                <img src="../../../assets/recursos/icon-paquetes.svg" class="material-icons">
+                <span class="menu-text">Paquetes</span>
+            </li>
+            <li class="menu-item" routerLink="/dashboard/componentes" routerLinkActive="active">
+                <img src="../../../assets/recursos/icon-paquetes.svg" class="material-icons">
+                <span class="menu-text">Componentes</span>
+            </li>
+            <li class="menu-item" routerLink="/dashboard/pedidos" routerLinkActive="active">
+                <img src="../../../assets/recursos/icon-paquetes.svg" class="material-icons">
+                <span class="menu-text">Pedidos</span>
+            </li>
+            <li class="menu-item" routerLink="/dashboard/mayoristas" routerLinkActive="active">
+                <img src="../../../assets/recursos/icon-paquetes.svg" class="material-icons">
+                <span class="menu-text">Mayoristas</span>
+            </li>
+            <li class="menu-item" routerLink="/dashboard/pinatas" routerLinkActive="active">
+                <img src="../../../assets/recursos/icon-paquetes.svg" class="material-icons">
+                <span class="menu-text">Piñatas</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contenido Dinámico -->
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

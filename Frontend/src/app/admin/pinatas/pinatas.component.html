@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>Piñatas</h1>
+    <div class="pinatas-container d-flex flex-wrap justify-content-center gap-3">
+        <app-card-pinata *ngFor="let paquete of paquetes" 
+                        [nombre]="paquete.nombre" 
+                        [descripcion]="paquete.descripcion"
+                        [precio]="paquete.precio">
+        </app-card-pinata>
+    </div>
+</div>

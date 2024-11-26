@@ -1,0 +1,52 @@
+.card {
+    background-color:#F3E9F5; /* Cambia este color según tu preferencia */
+    border-radius: 8px; /* Opcional: Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un efecto suave */
+    overflow: hidden; /* Evita que el contenido sobresalga */
+    transition: background-color 0.3s ease; /* Transición suave para cambios de color */
+  }
+  
+  .card:hover {
+    background-color: #e3b6eb;/* Cambia el color al pasar el mouse */
+  }
+  
+  .card-pinata:hover {
+    transform: scale(1.05); /* Efecto al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-pinata img {
+    height: 150px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Asegura que las imágenes mantengan proporciones */
+    border-top-left-radius: 8px; /* Bordes redondeados para la imagen */
+    border-top-right-radius: 8px;
+  }
+  
+  .card-pinata .card-body {
+    padding: 10px; /* Reduce el padding interno */
+    font-size: 0.9rem; /* Fuente más pequeña */
+  }
+  
+  .card-pinata h5 {
+    font-size: 1rem; /* Título ligeramente más pequeño */
+    margin-bottom: 8px;
+  }
+  
+  .card-pinata p {
+    margin: 0;
+    color: #555; /* Texto más claro */
+  }
+  
+  .card-pinata hr {
+    margin: 10px 0;
+  }
+
+  .card a{
+    background-color: #710A85;
+  }
+  
+  @media (max-width: 576px) {
+    .card-pinata {
+      width: 100%; /* Las tarjetas ocupan todo el ancho en pantallas pequeñas */
+    }
+  }

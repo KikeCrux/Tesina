@@ -1,0 +1,17 @@
+.table tbody tr {
+    transition: background-color 0.3s ease;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .badge {
+    font-size: 0.9em;
+  }
+  
+  h1{
+    font-family: 'Righteous';
+    color: #710A85;
+}
+
