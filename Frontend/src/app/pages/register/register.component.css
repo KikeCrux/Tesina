@@ -1,3 +1,71 @@
+/* Fondo con gradiente */
 body {
-    min-height: 70vh;
+    margin: 0;
+    background: #FFEEA8;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+  }
+  
+  h3{
+    font-family: 'Righteous';
+    color: #53c5b3;
+  }
+
+  label{
+    font-family: 'Righteous';
+  }
+  /* Estilo para la tarjeta */
+  .login-card {
+    background: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+  }
+  
+  /* Imagen del logo */
+  .logo-image {
+    width: 100px;
 }
+  
+  /* Inputs */
+  .input-group-text {
+    background: #53c5b3;
+    color: white;
+    border: none;
+  }
+  
+  .form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
+    border-color: #6a1b9a;
+  }
+  
+  /* Botón */
+  .btn-primary {
+    background: #53c5b3;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #399c8d;
+    box-shadow: 0 4px 8px rgba(28, 189, 187, 0.5);
+  }
+  
+  /* Enlace */
+  a {
+    color: #6a1b9a;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
