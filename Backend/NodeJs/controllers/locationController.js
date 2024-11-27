@@ -23,28 +23,28 @@ exports.getLocations = (req, res) => {
 
 // Crear una nueva ubicación
 exports.createLocation = (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-
     const { tipo_ubicacion, direccion, id_usuario } = req.body;
 
-    if (!tipo_ubicacion || !direccion) {
-        return res.status(400).json({ message: 'El tipo de ubicación y la dirección son obligatorios' });
+    if (!tipo_ubicacion || !id_usuario) {
+        return res.status(400).json({ message: 'El tipo de ubicación y el ID de usuario son obligatorios' });
+    }
+
+    if (tipo_ubicacion === 'personalizada' && !direccion) {
+        return res.status(400).json({ message: 'La dirección es obligatoria para ubicaciones personalizadas' });
     }
 
     const query = `
         INSERT INTO ubicaciones (tipo_ubicacion, direccion, id_usuario) 
         VALUES (?, ?, ?)`;
 
-    db.query(query, [tipo_ubicacion, direccion, id_usuario || null], (err, result) => {
+    db.query(query, [tipo_ubicacion, direccion || null, id_usuario], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Error al crear la ubicación', error: err });
         }
         res.status(201).json({ message: 'Ubicación creada exitosamente', id_ubicacion: result.insertId });
     });
 };
+
 
 // Actualizar una ubicación existente
 exports.updateLocation = (req, res) => {
