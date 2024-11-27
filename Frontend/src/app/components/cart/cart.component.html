@@ -5,13 +5,12 @@
       <img [src]="item.image ? item.image : '../../../assets/404-page.png'" alt="{{ item.name }}"
         style="width: 50px; height: 50px; margin-right: 10px;">
       <div>
-        <strong>{{ item.name }}</strong> <br>
+        <strong>{{ item.name }}</strong> <br />
         ${{ item.price | number: '1.2-2' }}
 
         <div class="d-flex align-items-center mt-2">
           <button class="btn btn-outline-secondary btn-sm" (click)="decreaseQuantity(i)">-</button>
-          <input type="number" class="form-control mx-2 quantity-input" style="width: 60px;" [value]="item.quantity"
-            readonly>
+          <input type="number" class="form-control mx-2 quantity-input" style="width: 60px;" [value]="item.quantity" readonly />
           <button class="btn btn-outline-secondary btn-sm" (click)="increaseQuantity(i)">+</button>
         </div>
 

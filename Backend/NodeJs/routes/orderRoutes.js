@@ -5,11 +5,11 @@ const orderController = require('../controllers/orderController');
 const router = express.Router();
 
 // Obtener todos los pedidos
-router.get('/pedidos', orderController.getOrders);
+router.get('/', orderController.getOrders);
 
 // Crear un pedido
 router.post(
-    '/pedidos',
+    '/',
     [
         body('id_usuario').isInt().withMessage('El ID de usuario es obligatorio y debe ser un número'),
         body('total_cantidad_pinatas').isInt({ min: 1 }).withMessage('La cantidad total debe ser un número positivo'),
@@ -21,7 +21,7 @@ router.post(
 
 // Actualizar el estado de un pedido
 router.put(
-    '/pedidos/:id_pedido',
+    '/:id_pedido',
     [
         param('id_pedido').isInt().withMessage('El ID del pedido debe ser un número'),
         body('estado_pedido').isIn(['pendiente', 'entregado']).withMessage('El estado del pedido no es válido')
@@ -31,7 +31,7 @@ router.put(
 
 // Eliminar un pedido
 router.delete(
-    '/pedidos/:id_pedido',
+    '/:id_pedido',
     [
         param('id_pedido').isInt().withMessage('El ID del pedido debe ser un número')
     ],
@@ -40,7 +40,7 @@ router.delete(
 
 // Obtener detalles de un pedido
 router.get(
-    '/pedidos/:id_pedido/detalles',
+    '/:id_pedido/detalles',
     [
         param('id_pedido').isInt().withMessage('El ID del pedido debe ser un número')
     ],
@@ -49,7 +49,7 @@ router.get(
 
 // Obtener pedidos por cliente
 router.get(
-    '/pedidos/cliente/:id_usuario',
+    '/cliente/:id_usuario',
     [
         param('id_usuario').isInt().withMessage('El ID del usuario debe ser un número')
     ],
@@ -57,4 +57,3 @@ router.get(
 );
 
 module.exports = router;
-

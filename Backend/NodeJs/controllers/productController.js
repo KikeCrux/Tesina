@@ -1,39 +1,78 @@
 const { validationResult } = require('express-validator');
 const db = require('../config/db');
 
-// Controlador para obtener los productos
+// Obtener productos (piñatas individuales)
 exports.getProducts = (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-
     const { id_usuario, tipo_usuario } = req.query;
     let query = '';
     let queryParams = [];
 
     if (!id_usuario) {
-        query = `SELECT id_producto, nombre, precio_menudeo AS precio, imagen_url FROM productos`;
-    } else if (tipo_usuario === 'mayoreo') {
+        // Mostrar precios de menudeo con promociones globales
         query = `
-        SELECT p.id_producto, p.nombre, pm.precio AS precio, p.imagen_url 
-        FROM productos p 
-        JOIN preciosmayoreo pm ON p.id_producto = pm.id_producto 
-        WHERE pm.id_usuario = ?`;
+            SELECT p.id_producto, p.nombre, 
+                   CASE 
+                       WHEN pr.id_promocion IS NOT NULL THEN 
+                           (p.precio_menudeo - COALESCE(pr.descuento_monto, 0)) 
+                       ELSE 
+                           p.precio_menudeo 
+                   END AS precio,
+                   p.imagen_url
+            FROM productos p
+            LEFT JOIN promociones pr 
+                ON p.id_producto = pr.id_producto
+                AND NOW() BETWEEN pr.fecha_inicio AND pr.fecha_fin
+                AND pr.id_usuario IS NULL
+        `;
+    } else if (tipo_usuario === 'mayoreo') {
+        // Mostrar precios de mayoreo con promociones específicas
+        query = `
+            SELECT p.id_producto, p.nombre, 
+                   CASE 
+                       WHEN pr.id_promocion IS NOT NULL THEN 
+                           (pm.precio - COALESCE(pr.descuento_monto, 0)) 
+                       ELSE 
+                           pm.precio 
+                   END AS precio,
+                   p.imagen_url
+            FROM productos p
+            JOIN preciosmayoreo pm 
+                ON p.id_producto = pm.id_producto
+            LEFT JOIN promociones pr 
+                ON p.id_producto = pr.id_producto
+                AND NOW() BETWEEN pr.fecha_inicio AND pr.fecha_fin
+                AND (pr.id_usuario = ? OR pr.id_usuario IS NULL)
+        `;
         queryParams.push(id_usuario);
     } else {
-        query = `SELECT id_producto, nombre, precio_menudeo AS precio, imagen_url FROM productos`;
+        // Mostrar precios de menudeo para clientes regulares
+        query = `
+            SELECT p.id_producto, p.nombre, 
+                   CASE 
+                       WHEN pr.id_promocion IS NOT NULL THEN 
+                           (p.precio_menudeo - COALESCE(pr.descuento_monto, 0)) 
+                       ELSE 
+                           p.precio_menudeo 
+                   END AS precio,
+                   p.imagen_url
+            FROM productos p
+            LEFT JOIN promociones pr 
+                ON p.id_producto = pr.id_producto
+                AND NOW() BETWEEN pr.fecha_inicio AND pr.fecha_fin
+                AND (pr.id_usuario = ? OR pr.id_usuario IS NULL)
+        `;
+        queryParams.push(id_usuario);
     }
 
     db.query(query, queryParams, (err, results) => {
         if (err) {
             return res.status(500).json({ message: 'Error al obtener los productos', error: err });
         }
-        res.json(results);
+        res.status(200).json(results);
     });
 };
 
-// Controlador para crear un producto
+// Crear un nuevo producto
 exports.createProduct = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -51,7 +90,7 @@ exports.createProduct = (req, res) => {
     });
 };
 
-// Controlador para actualizar un producto
+// Actualizar un producto
 exports.updateProduct = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -77,7 +116,7 @@ exports.updateProduct = (req, res) => {
     });
 };
 
-// Controlador para eliminar un producto
+// Eliminar un producto
 exports.deleteProduct = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -98,7 +137,7 @@ exports.deleteProduct = (req, res) => {
     });
 };
 
-// Controlador para asignar precios personalizados de mayoreo
+// Asignar precios personalizados de mayoreo
 exports.assignWholesalePrice = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -120,7 +159,7 @@ exports.assignWholesalePrice = (req, res) => {
     });
 };
 
-// Controlador para obtener precios personalizados de mayoreo
+// Obtener precios personalizados de mayoreo
 exports.getWholesalePrices = (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
