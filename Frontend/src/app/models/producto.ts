@@ -3,4 +3,5 @@ export interface Producto {
     nombre: string;
     precio: number;
     imagen_url: string;
+    precio_mayoreo?: number;
 }
