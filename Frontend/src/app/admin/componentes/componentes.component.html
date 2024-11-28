@@ -1,1 +1,58 @@
-<p>componentes works!</p>
+<div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+        <h1 class="me-3">Componentes</h1>
+        <!-- Botón para abrir el modal -->
+        <button class="circular-button" data-bs-toggle="modal" data-bs-target="#addPackageModal">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+
+    <div class="paquetes-container">
+        <app-card-componente *ngFor="let componente of componentes" [nombre]="componente.nombre" [tipo]="componente.tipo"
+            [precio]="componente.precio" [cantidad]="componente.cantidad">
+        </app-card-componente>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addPackageModal" tabindex="-1" aria-labelledby="addPackageModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPackageModalLabel">Agregar Nuevo componente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="onSubmit()" #packageForm="ngForm">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" class="form-control" [(ngModel)]="nuevoComponente.nombre"
+                                name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" id="precio" class="form-control" [(ngModel)]="nuevoComponente.precio"
+                                name="precio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo</label>
+                            <select id="tipo" class="form-select" [(ngModel)]="nuevoComponente.tipo" name="tipo" required>
+                                <option value="pinata">Piñata</option>
+                                <option value="palo">Palo</option>
+                                <option value="globos">Globos</option>
+                                <option value="centromesa">Centro de Mesa</option>
+                                <option value="decoracion">Decoración</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="number" id="cantidad" class="form-control" [(ngModel)]="nuevoComponente.cantidad"
+                                name="cantidad" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-.container{
+.container {
     margin-bottom: 10px;
 }
 
@@ -9,8 +9,45 @@
     justify-content: center;
 }
 
-h1{
-    font-family: 'Righteous';
+h1 {
+    font-family: 'Righteous', sans-serif;
     color: #710A85;
+    margin: 0; /* Elimina márgenes adicionales para alinear con el botón */
 }
 
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Espaciado entre el título y las tarjetas */
+}
+
+/* Botón circular */
+.circular-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #6a1b9a;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.circular-button:hover {
+    background-color: #8e24aa;
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Icono opcional */
+.circular-button i {
+    font-size: 20px;
+}

@@ -36,8 +36,3 @@
     background-color: #d32f2f;
     transform: scale(1.1);
 }
-
-/* Ícono dentro del botón */
-.circular-button i {
-    font-size: 14px;
-}

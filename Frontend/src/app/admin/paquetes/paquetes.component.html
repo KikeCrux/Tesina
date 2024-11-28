@@ -1,11 +1,53 @@
 <div class="container">
-    <h1>Paquetes</h1>
+    <div class="d-flex align-items-center justify-content-between">
+        <h1 class="me-3">Paquetes</h1>
+        <!-- Botón para abrir el modal -->
+        <button class="circular-button" data-bs-toggle="modal" data-bs-target="#addPackageModal">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+
     <div class="paquetes-container">
-        <app-card-paquete *ngFor="let paquete of paquetes" 
-                        [nombre]="paquete.nombre" 
-                        [descripcion]="paquete.descripcion"
-                        [precio]="paquete.precio" 
-                        [decoracion]="paquete.decoracion">
+        <app-card-paquete *ngFor="let paquete of paquetes" [nombre]="paquete.nombre" [descripcion]="paquete.descripcion"
+            [precio]="paquete.precio" [decoracion]="paquete.decoracion">
         </app-card-paquete>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addPackageModal" tabindex="-1" aria-labelledby="addPackageModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPackageModalLabel">Agregar Nuevo Paquete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="onSubmit()" #packageForm="ngForm">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" class="form-control" [(ngModel)]="nuevoPaquete.nombre"
+                                name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" id="descripcion" class="form-control"
+                                [(ngModel)]="nuevoPaquete.descripcion" name="descripcion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" id="precio" class="form-control" [(ngModel)]="nuevoPaquete.precio"
+                                name="precio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="decoracion" class="form-label">Decoración</label>
+                            <input type="text" id="decoracion" class="form-control"
+                                [(ngModel)]="nuevoPaquete.decoracion" name="decoracion" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
