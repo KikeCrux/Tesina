@@ -1,5 +1,27 @@
-.container {
-    margin-bottom: 10px;
+.paquetes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #710A85;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #333;
+}.container {
+    margin-bottom: 20px;
 }
 
 .paquetes-container {
@@ -12,23 +34,76 @@
 h1 {
     font-family: 'Righteous', sans-serif;
     color: #710A85;
-    margin: 0; /* Elimina márgenes adicionales para alinear con el botón */
 }
 
 .d-flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px; /* Espaciado entre el título y las tarjetas */
 }
 
-/* Botón circular */
+.card {
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.25rem;
+    color: #710A85;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.btn {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-primary {
+    background-color: #710A85;
+    border: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #8e24aa;
+}
+
 .circular-button {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     border: none;
-    background-color: #6a1b9a;
+    background-color: #710A85;
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -40,29 +115,219 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el mouse */
 .circular-button:hover {
     background-color: #8e24aa;
     transform: scale(1.1);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Icono opcional */
-.circular-button i {
-    font-size: 20px;
+/* Botón de eliminar en la tarjeta */
+.btn-outline-danger {
+    border: none;
+    background: none;
+    color: #dc3545;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.modal-header {
-    background-color: #6a1b9a;
+.btn-outline-danger:hover {
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+.btn-outline-danger i {
+    pointer-events: none; /* Asegura que solo el botón sea clickeable, no el ícono */
+}
+
+/* Contenedor general de paquetes */
+.paquetes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* Botón de basura circular */
+.delete-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background-color: #f44336;
     color: white;
-  }
-  
-  .btn-primary {
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover del botón */
+.delete-button:hover {
+    background-color: #e53935;
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Ícono dentro del botón */
+.delete-button i {
+    font-size: 18px;
+    pointer-events: none; /* Evitar que el clic interactúe solo con el ícono */
+}
+
+/* Contenedor general de paquetes */
+.paquetes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* Tarjeta */
+.card {
+    width: 280px; /* Ajustar el ancho deseado */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Botón de basura circular */
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Ícono dentro del botón */
+.delete-button i {
+    font-size: 18px;
+    pointer-events: none;
+}
+
+/* Título de la tarjeta */
+.card-title {
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.2rem;
+    color: #710A85;
+    margin-bottom: 8px;
+}
+
+/* Descripción */
+.card-text.descripcion {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+/* Lista sin estilos para decoración */
+.list-unstyled {
+    padding-left: 0;
+    margin-bottom: 12px;
+}
+
+/* Precio */
+.card-text.precio {
+    font-size: 1rem;
+    color: #d32f2f; /* Rojo del precio */
+    font-weight: bold;
+}
+
+/* Botón de "Ver más detalles" */
+.btn-primary {
     background-color: #6a1b9a;
     border: none;
-  }
-  
-  .btn-primary:hover {
+}
+
+.btn-primary:hover {
     background-color: #8e24aa;
+}
+
+.price {
+    color: red;
+    font-weight: bold;
   }
   
+
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #710A85;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.floating-button:hover {
+    background-color: #8e24aa;
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-select {
+    width: 300px;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #710A85;
+    transition: all 0.3s ease;
+}
+
+.custom-select:focus {
+    border-color: #8e24aa;
+    box-shadow: 0 0 5px rgba(142, 36, 170, 0.5);
+}
+
+.custom-select:hover {
+    background-color: #fafafa;
+}

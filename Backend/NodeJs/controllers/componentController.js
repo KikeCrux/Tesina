@@ -41,6 +41,7 @@ exports.addComponentToPackage = (req, res) => {
     });
 };
 
+
 // Actualizar un componente
 exports.updateComponent = (req, res) => {
     const { id_componente } = req.params;

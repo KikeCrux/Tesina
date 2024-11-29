@@ -15,6 +15,8 @@ exports.getPackages = (req, res) => {
 exports.createPackage = (req, res) => {
     const { nombre_paquete, descripcion, precio_paquete, decoracion } = req.body;
 
+    console.log('Datos recibidos:', req.body);
+
     if (!nombre_paquete || !precio_paquete) {
         return res.status(400).json({ message: 'El nombre y precio del paquete son obligatorios' });
     }
@@ -23,11 +25,13 @@ exports.createPackage = (req, res) => {
                    VALUES (?, ?, ?, ?)`;
     db.query(query, [nombre_paquete, descripcion || null, precio_paquete, decoracion || null], (err, result) => {
         if (err) {
+            console.error('Error en la consulta SQL:', err);
             return res.status(500).json({ message: 'Error al crear el paquete', error: err });
         }
         res.status(201).json({ message: 'Paquete creado exitosamente', id_paquete: result.insertId });
     });
 };
+
 
 // Actualizar un paquete existente
 exports.updatePackage = (req, res) => {
