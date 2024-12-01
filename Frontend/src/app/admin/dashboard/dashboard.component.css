@@ -1,6 +1,7 @@
 .dashboard-layout {
   display: flex;
   height: 100vh;
+  font-family: 'Poppins';
 }
 
 /* General Sidebar Styling */
@@ -60,6 +61,14 @@
 .menu-item .material-icons {
   font-size: 24px;
   margin-right: 15px;
+}
+
+.sidebar img.material-icons {
+  width: 24px; /* Ancho del icono */
+  height: 24px; /* Alto del icono */
+  object-fit: contain; /* Asegura que las imágenes mantengan su proporción */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+  display: inline-block; /* Asegura que se alineen correctamente con el texto */
 }
 
 .menu-item .menu-text {

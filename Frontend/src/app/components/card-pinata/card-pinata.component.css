@@ -28,8 +28,9 @@
   }
   
   .card-pinata h5 {
-    font-size: 1rem; /* Título ligeramente más pequeño */
+    font-family: 'Righteous';
     margin-bottom: 8px;
+    color: #710A85;
   }
   
   .card-pinata p {
@@ -43,6 +44,8 @@
 
   .card a{
     background-color: #710A85;
+    border-color: #710A85;
+  font-family:'Poppins-Bold';
   }
   
   @media (max-width: 576px) {
