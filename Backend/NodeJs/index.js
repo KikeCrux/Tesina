@@ -18,6 +18,8 @@ const packageRoutes = require('./routes/packageRoutes');
 const componentRoutes = require('./routes/componentRoutes');
 const promotionRoutes = require('./routes/promotionRoutes');
 const locationRoutes = require('./routes/locationRoutes');
+const orderDetailsRoutes = require('./routes/orderDetailsRoutes');
+const locationsRoutes = require('./routes/locationsRoutes');
 
 // Usar las rutas
 app.use('/api/auth', authRoutes);
@@ -28,6 +30,8 @@ app.use('/api/packages', packageRoutes);
 app.use('/api/components', componentRoutes);
 app.use('/api/promotions', promotionRoutes);
 app.use('/api/locations', locationRoutes);
+app.use('/api/order-details', orderDetailsRoutes);
+app.use('/api/locations', locationsRoutes);
 
 // Ruta básica de prueba
 app.get('/', (req, res) => {
