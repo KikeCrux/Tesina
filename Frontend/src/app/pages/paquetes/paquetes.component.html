@@ -1,24 +1,29 @@
 <body>
   <app-header></app-header>
-  <div class="container py-5 container-fluid">
-      <h1 class="text-center mb-4" style="font-family: 'Righteous', sans-serif; color: #710A85;">Paquetes Disponibles</h1>
+  <div class="container py-5">
+      <h1 class="text-center mb-5" style="font-family: 'Righteous', sans-serif; color: #710A85;">Paquetes Disponibles</h1>
       <div class="row">
           <div class="col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
-              <div class="card shadow-sm" style="width: 100%;">
+              <div class="card shadow-lg border-0" style="border-radius: 15px;">
                   <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-3">
-                          <h3 class="card-title">{{ paquete.nombre_paquete }}</h3>
+                          <h4 class="card-title text-primary" style="font-family: 'Righteous'; color: #710A85;">{{ paquete.nombre_paquete }}</h4>
                       </div>
-                      <p class="card-text text-muted">{{ paquete.descripcion }}</p>
-                      <p class="card-text">
-                          <strong>Decoración:</strong>
+                      <p class="card-text text-muted mb-2">
+                          <i class="fa fa-info-circle me-2" style="color: #710A85;"></i>
+                          {{ paquete.descripcion }}
+                      </p>
+                      <p class="card-text mb-2">
+                          <strong>Decoración:</strong> <br>
                           <span>{{ paquete.decoracion }}</span>
                       </p>
-                      <p class="card-text">
+                      <p class="card-text mb-3">
                           <strong>Precio:</strong> <br>
-                          <span class="text-danger">${{ paquete.precio_paquete }} MXN</span>
+                          <span class="text-danger fw-bold">${{ paquete.precio_paquete }} MXN</span>
                       </p>
-                      <a href="#" class="btn btn-primary w-100 mt-3" (click)="verDetallesPaquete(paquete)" data-bs-toggle="modal" data-bs-target="#detallesPaqueteModal">Ver más detalles</a>
+                      <button class="btn btn-primary w-100" (click)="verDetallesPaquete(paquete)" data-bs-toggle="modal" data-bs-target="#detallesPaqueteModal" style="background-color: #710A85; border: none;">
+                          Ver más detalles
+                      </button>
                   </div>
               </div>
           </div>
@@ -26,27 +31,34 @@
   </div>
 
   <!-- Modal para mostrar detalles de los componentes -->
-<div class="modal fade" id="detallesPaqueteModal" tabindex="-1" aria-labelledby="detallesPaqueteLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="detallesPaqueteLabel">Componentes del Paquete: {{ paqueteSeleccionado?.nombre_paquete }}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <div *ngIf="componentes.length > 0; else noComponentes">
-                  <ul class="list-group">
-                      <li class="list-group-item" *ngFor="let componente of componentes">
-                          <strong>{{ componente.nombre_componente }}</strong> - {{ componente.tipo_componente }} (Cantidad: {{ componente.cantidad }})
-                      </li>
-                  </ul>
+  <div class="modal fade" id="detallesPaqueteModal" tabindex="-1" aria-labelledby="detallesPaqueteLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content" style="border-radius: 20px; background-color: #FFEEA8;">
+              <div class="modal-header" style="background-color: #710A85; color: white; border-radius: 20px 20px 0 0;">
+                  <h5 class="modal-title" id="detallesPaqueteLabel" style="font-family: 'Righteous';">Componentes del Paquete</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <ng-template #noComponentes>
-                  <p class="text-center text-muted">Este paquete no tiene componentes asociados.</p>
-              </ng-template>
+              <div class="modal-body">
+                  <div *ngIf="componentes.length > 0; else noComponentes">
+                      <ul class="list-group">
+                          <li class="list-group-item" *ngFor="let componente of componentes" style="border: none; background-color: #FFF8E1; margin-bottom: 10px; border-radius: 10px;">
+                              <div class="d-flex justify-content-between align-items-center">
+                                  <span class="fw-bold">{{ componente.nombre_componente }}</span>
+                                  <span class="badge bg-primary text-white">{{ componente.tipo_componente }}</span>
+                              </div>
+                              <div class="text-muted">Cantidad: {{ componente.cantidad }}</div>
+                          </li>
+                      </ul>
+                  </div>
+                  <ng-template #noComponentes>
+                      <p class="text-center text-muted" style="font-style: italic;">Este paquete no tiene componentes asociados.</p>
+                  </ng-template>
+              </div>
+              <div class="modal-footer d-flex justify-content-end" style="border-top: none;">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              </div>
           </div>
       </div>
   </div>
-</div>
   <app-footer></app-footer>
 </body>
