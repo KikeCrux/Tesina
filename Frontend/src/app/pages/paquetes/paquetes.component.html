@@ -1,0 +1,48 @@
+<body>
+    <app-header></app-header>
+    <div class="container-fluid my-5 d-flex align-items-start">
+        <!-- Sidebar del carrito: solo se muestra si el usuario ha iniciado sesión -->
+        <div class="col-lg-3" *ngIf="isAuthenticated">
+            <app-cart [cartItems]="cartItems"></app-cart>
+        </div>
+
+        <!-- Contenedor principal para las piñatas -->
+        <div [class.col-lg-9]="isAuthenticated" [class.col-lg-12]="!isAuthenticated" class="container-pinata">
+            <h1 class="title text-center mb-4">Nuestros Paquetes</h1>
+
+            <div class="paquetes-container">
+                <div class="card mb-3 position-relative" *ngFor="let paquete of paquetes">
+                    <!-- Botón de basura circular -->
+                    <button 
+                        class="delete-button"
+                        (click)="deletePackage(paquete.id_paquete!)"
+                        [disabled]="!paquete.id_paquete"
+                        aria-label="Eliminar paquete"
+                        title="Eliminar paquete"
+                    >
+                        <i class="fa fa-trash"></i>
+                    </button>
+            
+                    <div class="card-body">
+                        <h5 class="card-title">{{ paquete.nombre_paquete }}</h5>
+                        <p class="card-text descripcion">{{ paquete.descripcion }}</p>
+                        <p class="card-text"><strong>Decoración:</strong></p>
+                        <ul class="list-unstyled">
+                            <li>{{ paquete.decoracion }}</li>
+                        </ul>
+                        <p class="card-text">
+                            <strong>Precio:</strong><br />
+                            <span class="price">{{ paquete.precio_paquete | currency:'MXN':'symbol' }}</span>
+                          </p>
+                                          <button class="btn btn-primary btn-sm w-100 mt-3" (click)="viewDetails(paquete)">
+                            Ver más detalles
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <app-footer></app-footer>
+</body>
