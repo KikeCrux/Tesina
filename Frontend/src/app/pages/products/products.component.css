@@ -1,32 +1,68 @@
 .container-fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
     background-color: #FFEEA8;
-}
-
-.container-fluid h1{
+  }
+  
+  .container-fluid h1 {
     font-family: 'Righteous';
     color: #710A85;
-}
-
-.container-pinata {
-    flex-grow: 1;
-    max-width: calc(100% - 300px);
-    margin: 0 auto;
-    transition: all 0.3s ease-in-out;
-}
-
-.app-cart {
+  }
+  
+  .container-fluid .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .app-cart {
     position: sticky;
     top: 20px;
     max-width: 300px;
     max-height: 80vh;
     overflow-y: auto;
-}
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .app-cart h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .container-pinata .col-lg-4,
+  .container-pinata .col-md-6,
+  .container-pinata .col-sm-6 {
+    display: flex;
+    justify-content: center;
+  }
 
-.container-pinata .col-lg-3,
-.container-pinata .col-lg-4 {
-    padding: 15px;
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #FFEEA8; /* Color del fondo continuo */
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif; /* Asegúrate de que la fuente coincida con tu diseño */
+  }
+  
+  .container-fluid {
+    flex: 1; /* Asegura que este contenedor crezca y llene el espacio */
+    background-color: #FFEEA8; /* Mismo color que el fondo */
+  }
+  
+  .wave-container img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .app-footer {
+    background-color: #FFD98E; /* Color para el footer */
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  

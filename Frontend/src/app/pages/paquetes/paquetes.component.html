@@ -1,48 +1,52 @@
 <body>
-    <app-header></app-header>
-    <div class="container-fluid my-5 d-flex align-items-start">
-        <!-- Sidebar del carrito: solo se muestra si el usuario ha iniciado sesión -->
-        <div class="col-lg-3" *ngIf="isAuthenticated">
-            <app-cart [cartItems]="cartItems"></app-cart>
-        </div>
+  <app-header></app-header>
+  <div class="container py-5 container-fluid">
+      <h1 class="text-center mb-4" style="font-family: 'Righteous', sans-serif; color: #710A85;">Paquetes Disponibles</h1>
+      <div class="row">
+          <div class="col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
+              <div class="card shadow-sm" style="width: 100%;">
+                  <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                          <h3 class="card-title">{{ paquete.nombre_paquete }}</h3>
+                      </div>
+                      <p class="card-text text-muted">{{ paquete.descripcion }}</p>
+                      <p class="card-text">
+                          <strong>Decoración:</strong>
+                          <span>{{ paquete.decoracion }}</span>
+                      </p>
+                      <p class="card-text">
+                          <strong>Precio:</strong> <br>
+                          <span class="text-danger">${{ paquete.precio_paquete }} MXN</span>
+                      </p>
+                      <a href="#" class="btn btn-primary w-100 mt-3" (click)="verDetallesPaquete(paquete)" data-bs-toggle="modal" data-bs-target="#detallesPaqueteModal">Ver más detalles</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
-        <!-- Contenedor principal para las piñatas -->
-        <div [class.col-lg-9]="isAuthenticated" [class.col-lg-12]="!isAuthenticated" class="container-pinata">
-            <h1 class="title text-center mb-4">Nuestros Paquetes</h1>
-
-            <div class="paquetes-container">
-                <div class="card mb-3 position-relative" *ngFor="let paquete of paquetes">
-                    <!-- Botón de basura circular -->
-                    <button 
-                        class="delete-button"
-                        (click)="deletePackage(paquete.id_paquete!)"
-                        [disabled]="!paquete.id_paquete"
-                        aria-label="Eliminar paquete"
-                        title="Eliminar paquete"
-                    >
-                        <i class="fa fa-trash"></i>
-                    </button>
-            
-                    <div class="card-body">
-                        <h5 class="card-title">{{ paquete.nombre_paquete }}</h5>
-                        <p class="card-text descripcion">{{ paquete.descripcion }}</p>
-                        <p class="card-text"><strong>Decoración:</strong></p>
-                        <ul class="list-unstyled">
-                            <li>{{ paquete.decoracion }}</li>
-                        </ul>
-                        <p class="card-text">
-                            <strong>Precio:</strong><br />
-                            <span class="price">{{ paquete.precio_paquete | currency:'MXN':'symbol' }}</span>
-                          </p>
-                                          <button class="btn btn-primary btn-sm w-100 mt-3" (click)="viewDetails(paquete)">
-                            Ver más detalles
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-    <app-footer></app-footer>
+  <!-- Modal para mostrar detalles de los componentes -->
+<div class="modal fade" id="detallesPaqueteModal" tabindex="-1" aria-labelledby="detallesPaqueteLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="detallesPaqueteLabel">Componentes del Paquete: {{ paqueteSeleccionado?.nombre_paquete }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div *ngIf="componentes.length > 0; else noComponentes">
+                  <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let componente of componentes">
+                          <strong>{{ componente.nombre_componente }}</strong> - {{ componente.tipo_componente }} (Cantidad: {{ componente.cantidad }})
+                      </li>
+                  </ul>
+              </div>
+              <ng-template #noComponentes>
+                  <p class="text-center text-muted">Este paquete no tiene componentes asociados.</p>
+              </ng-template>
+          </div>
+      </div>
+  </div>
+</div>
+  <app-footer></app-footer>
 </body>

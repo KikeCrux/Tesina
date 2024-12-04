@@ -1,0 +1,50 @@
+.card-title {
+    font-family: 'Righteous', sans-serif;
+    color: #710A85;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.btn {
+    background-color: #710A85;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5a086b;
+}
+
+/* Botón circular */
+.circular-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e53935;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.circular-button:hover {
+    background-color: #d32f2f;
+    transform: scale(1.1);
+}
+
+/* Ícono dentro del botón */
+.circular-button i {
+    font-size: 14px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #FFEEA8; /* Color del fondo continuo */
+  }
