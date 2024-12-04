@@ -1,71 +1,147 @@
-/* Fondo con gradiente */
-body {
-    margin: 0;
-    background: #FFEEA8;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-  }
-  
-  h3{
-    font-family: 'Righteous';
-    color: #53c5b3;
-  }
-
-  label{
-    font-family: 'Righteous';
-  }
-  /* Estilo para la tarjeta */
-  .login-card {
-    background: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra */
-  }
-  
-  /* Imagen del logo */
-  .logo-image {
-    width: 100px;
+.login {
+  margin: 0;
+  font-family: 'Poppins';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #FFEEA8;
 }
-  
-  /* Inputs */
-  .input-group-text {
-    background: #53c5b3;
-    color: white;
-    border: none;
+.container {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  height: 80vh;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.image-section {
+  background: linear-gradient(135deg, #FB27A9, #fcbae3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  width: 50%;
+  box-sizing: border-box;
+}
+.image-section img {
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 20px;
+}
+.image-section h2 {
+  font-size: 26px;
+  margin: 10px 0;
+}
+.image-section p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.form-section {
+  padding: 40px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #fff;
+}
+.form-section h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+.form-section p {
+  margin: 5px 0 20px;
+  font-size: 16px;
+  color: #666;
+}
+.form-section input[type="email"],
+.form-section input[type="password"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 14px;
+}
+.form-section button {
+  padding: 10px;
+  background: #fcbae3;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.form-section button:hover {
+  background: #1c86ee;
+}
+.social-login {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.social-login a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #1e90ff;
+}
+.social-login a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      height: auto;
+      align-items: center;
   }
-  
-  .form-control {
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  .image-section {
+      width: 100%;
+      padding: 30px;
+      text-align: center;
   }
-  
-  .form-control:focus {
-    box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
-    border-color: #6a1b9a;
+  .form-section {
+      width: 100%;
+      padding: 30px;
   }
-  
-  /* Botón */
-  .btn-primary {
-    background: #53c5b3;
-    border: none;
-    transition: all 0.3s ease;
+  .form-section h1 {
+      font-size: 20px;
   }
-  
-  .btn-primary:hover {
-    background: #399c8d;
-    box-shadow: 0 4px 8px rgba(28, 189, 187, 0.5);
+  .form-section p {
+      font-size: 14px;
   }
-  
-  /* Enlace */
-  a {
-    color: #6a1b9a;
-    text-decoration: none;
+  .form-section input[type="email"],
+  .form-section input[type="password"] {
+      font-size: 16px;
   }
-  
-  a:hover {
-    text-decoration: underline;
+  .form-section button {
+      font-size: 18px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .image-section h2 {
+      font-size: 20px;
+  }
+  .image-section p {
+      font-size: 14px;
+  }
+  .form-section h1 {
+      font-size: 18px;
+  }
+  .form-section p {
+      font-size: 12px;
+  }
+  .form-section input[type="email"],
+  .form-section input[type="password"] {
+      font-size: 16px;
+  }
+  .form-section button {
+      font-size: 16px;
+  }
+}

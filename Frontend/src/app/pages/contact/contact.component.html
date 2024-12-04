@@ -1,40 +1,44 @@
-<div class="container my-5">
-  <h1 class="text-center mb-4">Contáctanos</h1>
-
-  <!-- Datos de Contacto -->
-  <div class="row mb-5 container-fluid containerDatos">
-    <div class="col-md-6">
-      <h4>Nuestra Información de Contacto</h4>
-      <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad XYZ</p>
-      <p><strong>Teléfono:</strong> +52 555-1234</p>
-      <p><strong>Email:</strong> info&#64;pinatasmagics.com</p>
-    </div>
-    <div class="col-md-6">
-      <h4>Horarios de Atención</h4>
-      <p><strong>Lunes a Viernes:</strong> 9:00 AM - 6:00 PM</p>
-      <p><strong>Sábados:</strong> 9:00 AM - 2:00 PM</p>
-      <p><strong>Domingos:</strong> Cerrado</p>
-    </div>
-  </div>
-
-  <!-- Formulario de Contacto -->
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
+<body>
+  <app-header></app-header>
+  <div class="container">
+    <div class="contact-form">
+      <div class="menu-icon"></div>
+      <h1>Contáctanos</h1>
+      <p>Recibe promociones e información</p>
       <form>
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required>
+        <div class="form-group">
+          <input type="text" placeholder="Nombre" required>
         </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Correo Electrónico</label>
-          <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico" required>
+        <div class="form-group">
+          <input type="email" placeholder="Correo Electrónico" required>
         </div>
-        <div class="mb-3">
-          <label for="mensaje" class="form-label">Mensaje</label>
+        <div class="form-group">
           <textarea class="form-control" id="mensaje" rows="5" placeholder="Tu mensaje" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        <button type="submit">Enviar</button>
       </form>
     </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+      <h2>Nuestra Información</h2>
+      <ul>
+        <li><i class="fa-solid fa-envelope"></i> info&#64;pinatasmagics.com</li>
+        <li><i class="fa-solid fa-phone"></i> +24 56 89 146</li>
+        <li><i class="fa-solid fa-map-marker-alt"></i> 14 Greenroad St.</li>
+        <li><i class="fa-solid fa-clock"></i>Horarios de Atención</li>
+        <li>
+          <p><strong>Lunes a Viernes:</strong> 9:00 AM - 6:00 PM</p>
+          <p><strong>Sábados:</strong> 9:00 AM - 2:00 PM</p>
+          <p><strong>Domingos:</strong> Cerrado</p>
+        </li>
+      </ul>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
   </div>
-</div>
+  <app-footer></app-footer>
+</body>
