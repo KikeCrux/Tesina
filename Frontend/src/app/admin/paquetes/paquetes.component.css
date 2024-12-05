@@ -1,79 +1,63 @@
-.container {
-    margin-bottom: 20px;
-}
-
-.paquetes-container {
+.card-paquete {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-}
-
-h1 {
-    font-family: 'Righteous', sans-serif;
-    color: #710A85;
-}
-
-.d-flex {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+    height: 100%; /* Todas las tarjetas tendrán la misma altura */
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-.card {
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.card-paquete .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.card-body {
-    padding: 20px;
-    text-align: center;
-}
-
-.card-title {
+.card-paquete .card-title {
     font-family: 'Righteous', sans-serif;
-    font-size: 1.25rem;
     color: #710A85;
-    margin-bottom: 10px;
 }
 
-.card-text {
-    color: #555;
-    margin-bottom: 8px;
+.card-paquete .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d9534f;
 }
 
-.btn {
-    padding: 6px 12px;
-    font-size: 0.875rem;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    border: none;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.btn-danger:hover {
-    background-color: #c82333;
-}
-
-.btn-primary {
+.card-paquete .btn {
     background-color: #710A85;
     border: none;
-    color: white;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-.btn-primary:hover {
-    background-color: #8e24aa;
+.card-paquete .btn:hover {
+    background-color: #5a086b;
+}
+
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e53935; /* Rojo */
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
 }
 
 .circular-button {
@@ -92,158 +76,3 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
-.circular-button:hover {
-    background-color: #8e24aa;
-    transform: scale(1.1);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Botón de eliminar en la tarjeta */
-.btn-outline-danger {
-    border: none;
-    background: none;
-    color: #dc3545;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-danger:hover {
-    color: #ff6b6b;
-    transform: scale(1.1);
-}
-
-.btn-outline-danger i {
-    pointer-events: none; /* Asegura que solo el botón sea clickeable, no el ícono */
-}
-
-/* Contenedor general de paquetes */
-.paquetes-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-}
-
-/* Botón de basura circular */
-.delete-button {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 40px;
-    height: 40px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Efecto hover del botón */
-.delete-button:hover {
-    background-color: #e53935;
-    transform: scale(1.1);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Ícono dentro del botón */
-.delete-button i {
-    font-size: 18px;
-    pointer-events: none; /* Evitar que el clic interactúe solo con el ícono */
-}
-
-/* Contenedor general de paquetes */
-.paquetes-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-}
-
-/* Tarjeta */
-.card {
-    width: 280px; /* Ajustar el ancho deseado */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-/* Botón de basura circular */
-.delete-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.delete-button:hover {
-    background-color: #e53935;
-    transform: scale(1.1);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Ícono dentro del botón */
-.delete-button i {
-    font-size: 18px;
-    pointer-events: none;
-}
-
-/* Título de la tarjeta */
-.card-title {
-    font-family: 'Righteous', sans-serif;
-    font-size: 1.2rem;
-    color: #710A85;
-    margin-bottom: 8px;
-}
-
-/* Descripción */
-.card-text.descripcion {
-    font-size: 0.95rem;
-    color: #333;
-    margin-bottom: 12px;
-}
-
-/* Lista sin estilos para decoración */
-.list-unstyled {
-    padding-left: 0;
-    margin-bottom: 12px;
-}
-
-/* Precio */
-.card-text.precio {
-    font-size: 1rem;
-    color: #d32f2f; /* Rojo del precio */
-    font-weight: bold;
-}
-
-/* Botón de "Ver más detalles" */
-.btn-primary {
-    background-color: #6a1b9a;
-    border: none;
-}
-
-.btn-primary:hover {
-    background-color: #8e24aa;
-}
-
-.price {
-    color: red;
-    font-weight: bold;
-  }
-  

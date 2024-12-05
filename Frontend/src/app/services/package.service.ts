@@ -46,4 +46,14 @@ export class PackageService {
     const endpoint = `${this.baseUrl}/packages/${idPaquete}`;
     return this.http.delete<any>(endpoint);
   }
+
+  /**
+ * Obtener los componentes de un paquete específico.
+ * @param idPaquete ID del paquete.
+ */
+getComponentsByPackage(idPaquete: number): Observable<any[]> {
+  const endpoint = `${this.baseUrl}/packages/${idPaquete}/components`;
+  return this.http.get<any[]>(endpoint);
+}
+
 }

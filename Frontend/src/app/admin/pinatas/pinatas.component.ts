@@ -12,18 +12,18 @@ import { CardPinataComponent } from "../../components/card-pinata/card-pinata.co
 export class PinatasComponent {
   paquetes = [
     {
-      nombre: 'Paquete Básico',
-      descripcion: 'Incluye una piñata y decoraciones básicas.',
+      nombre: 'Piñata básica',
+      descripcion: 'Incluye una piñata básica.',
       precio: 500,
     },
     {
-      nombre: 'Paquete Básico',
-      descripcion: 'Incluye una piñata y decoraciones básicas.',
+      nombre: 'Piñata básica',
+      descripcion: 'Incluye una piñata básica.',
       precio: 500,
     },
     {
-      nombre: 'Paquete Básico',
-      descripcion: 'Incluye una piñata y decoraciones básicas.',
+      nombre: 'Piñata básica',
+      descripcion: 'Incluye una piñata básica.',
       precio: 500,
     }
   ];

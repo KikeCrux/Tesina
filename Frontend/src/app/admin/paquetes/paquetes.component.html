@@ -15,39 +15,41 @@
         </button>
     </div>
 
-    <div class="paquetes-container">
-        <div class="card mb-3 position-relative" *ngFor="let paquete of paquetes">
-            <!-- Botón de basura circular -->
-            <button 
-                class="delete-button"
-                (click)="deletePackage(paquete.id_paquete!)"
-                [disabled]="!paquete.id_paquete"
-                aria-label="Eliminar paquete"
-                title="Eliminar paquete"
-            >
-                <i class="fa fa-trash"></i>
-            </button>
-    
-            <div class="card-body">
-                <h5 class="card-title">{{ paquete.nombre_paquete }}</h5>
-                <p class="card-text descripcion">{{ paquete.descripcion }}</p>
-                <p class="card-text"><strong>Decoración:</strong></p>
-                <ul class="list-unstyled">
-                    <li>{{ paquete.decoracion }}</li>
-                </ul>
-                <p class="card-text">
-                    <strong>Precio:</strong><br />
-                    <span class="price">{{ paquete.precio_paquete | currency:'MXN':'symbol' }}</span>
-                  </p>
-                                  <button class="btn btn-primary btn-sm w-100 mt-3" (click)="viewDetails(paquete)">
-                    Ver más detalles
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
+            <div class="card shadow-sm card-paquete h-100 d-flex flex-column">
+                <!-- Botón de basura circular -->
+                <button 
+                    class="delete-button"
+                    (click)="deletePackage(paquete.id_paquete!)"
+                    [disabled]="!paquete.id_paquete"
+                    aria-label="Eliminar paquete"
+                    title="Eliminar paquete"
+                >
+                    <i class="fa fa-trash"></i>
                 </button>
+
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ paquete.nombre_paquete }}</h5>
+                    <p class="card-text descripcion">{{ paquete.descripcion }}</p>
+                    <p class="card-text"><strong>Decoración:</strong></p>
+                    <ul class="list-unstyled">
+                        <li>{{ paquete.decoracion }}</li>
+                    </ul>
+                    <div class="mt-auto">
+                        <p class="card-text">
+                            <strong>Precio:</strong><br />
+                            <span class="price">{{ paquete.precio_paquete | currency:'MXN':'symbol' }}</span>
+                        </p>
+                        <button class="btn btn-primary btn-sm w-100 mt-3" (click)="viewDetails(paquete)">
+                            Ver más detalles
+                          </button>                          
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
-    
-    
+</div>
 
     <!-- Modal para agregar paquete -->
     <div class="modal fade" id="addPackageModal" tabindex="-1" aria-labelledby="addPackageModalLabel" aria-hidden="true">
@@ -114,4 +116,4 @@
             </div>
         </div>
     </div>
-</div>
+
