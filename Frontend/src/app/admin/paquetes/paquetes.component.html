@@ -1,9 +1,5 @@
 <head>
-    <!-- Font Awesome CSS -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 
 
@@ -18,14 +14,8 @@
     <div class="row">
         <div class="col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
             <div class="card shadow-sm card-paquete h-100 d-flex flex-column">
-                <!-- Botón de basura circular -->
-                <button 
-                    class="delete-button"
-                    (click)="deletePackage(paquete.id_paquete!)"
-                    [disabled]="!paquete.id_paquete"
-                    aria-label="Eliminar paquete"
-                    title="Eliminar paquete"
-                >
+                <button class="delete-button" (click)="deletePackage(paquete.id_paquete!)"
+                    [disabled]="!paquete.id_paquete" aria-label="Eliminar paquete" title="Eliminar paquete">
                     <i class="fa fa-trash"></i>
                 </button>
 
@@ -43,7 +33,7 @@
                         </p>
                         <button class="btn btn-primary btn-sm w-100 mt-3" (click)="viewDetails(paquete)">
                             Ver más detalles
-                          </button>                          
+                        </button>
                     </div>
                 </div>
             </div>
@@ -51,69 +41,76 @@
     </div>
 </div>
 
-    <!-- Modal para agregar paquete -->
-    <div class="modal fade" id="addPackageModal" tabindex="-1" aria-labelledby="addPackageModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addPackageModalLabel">Agregar Nuevo Paquete</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    <form (ngSubmit)="onSubmit()" #packageForm="ngForm">
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" id="nombre" class="form-control" [(ngModel)]="nuevoPaquete.nombre_paquete" name="nombre" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripción</label>
-                            <input type="text" id="descripcion" class="form-control" [(ngModel)]="nuevoPaquete.descripcion" name="descripcion" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
-                            <input type="number" id="precio" class="form-control" [(ngModel)]="nuevoPaquete.precio_paquete" name="precio" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="decoracion" class="form-label">Decoración</label>
-                            <input type="text" id="decoracion" class="form-control" [(ngModel)]="nuevoPaquete.decoracion" name="decoracion" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Agregar</button>
-                    </form>
-                </div>
+<!-- Modal para agregar paquete -->
+<div class="modal fade" id="addPackageModal" tabindex="-1" aria-labelledby="addPackageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addPackageModalLabel">Agregar Nuevo Paquete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="onSubmit()" #packageForm="ngForm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" class="form-control" [(ngModel)]="nuevoPaquete.nombre_paquete"
+                            name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input type="text" id="descripcion" class="form-control" [(ngModel)]="nuevoPaquete.descripcion"
+                            name="descripcion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" id="precio" class="form-control" [(ngModel)]="nuevoPaquete.precio_paquete"
+                            name="precio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="decoracion" class="form-label">Decoración</label>
+                        <input type="text" id="decoracion" class="form-control" [(ngModel)]="nuevoPaquete.decoracion"
+                            name="decoracion" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Agregar</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal para editar paquete -->
-    <div class="modal fade" id="editPackageModal" tabindex="-1" aria-labelledby="editPackageModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editPackageModalLabel">Editar Paquete</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    <form (ngSubmit)="onUpdate()" #editPackageForm="ngForm">
-                        <div class="mb-3">
-                            <label for="editNombre" class="form-label">Nombre</label>
-                            <input type="text" id="editNombre" class="form-control" [(ngModel)]="paqueteSeleccionado.nombre_paquete" name="nombre" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editDescripcion" class="form-label">Descripción</label>
-                            <input type="text" id="editDescripcion" class="form-control" [(ngModel)]="paqueteSeleccionado.descripcion" name="descripcion" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editPrecio" class="form-label">Precio</label>
-                            <input type="number" id="editPrecio" class="form-control" [(ngModel)]="paqueteSeleccionado.precio_paquete" name="precio" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editDecoracion" class="form-label">Decoración</label>
-                            <input type="text" id="editDecoracion" class="form-control" [(ngModel)]="paqueteSeleccionado.decoracion" name="decoracion" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
-                    </form>
-                </div>
+<!-- Modal para editar paquete -->
+<div class="modal fade" id="editPackageModal" tabindex="-1" aria-labelledby="editPackageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPackageModalLabel">Editar Paquete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="onUpdate()" #editPackageForm="ngForm">
+                    <div class="mb-3">
+                        <label for="editNombre" class="form-label">Nombre</label>
+                        <input type="text" id="editNombre" class="form-control"
+                            [(ngModel)]="paqueteSeleccionado.nombre_paquete" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDescripcion" class="form-label">Descripción</label>
+                        <input type="text" id="editDescripcion" class="form-control"
+                            [(ngModel)]="paqueteSeleccionado.descripcion" name="descripcion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPrecio" class="form-label">Precio</label>
+                        <input type="number" id="editPrecio" class="form-control"
+                            [(ngModel)]="paqueteSeleccionado.precio_paquete" name="precio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDecoracion" class="form-label">Decoración</label>
+                        <input type="text" id="editDecoracion" class="form-control"
+                            [(ngModel)]="paqueteSeleccionado.decoracion" name="decoracion" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+                </form>
             </div>
         </div>
     </div>
-
+</div>

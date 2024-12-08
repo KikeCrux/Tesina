@@ -1,8 +1,13 @@
+.container h1{
+    font-family: 'Righteous';
+    color: #710A85;
+}
+
 .card-paquete {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; /* Todas las tarjetas tendrán la misma altura */
+    height: 100%;
     padding: 10px;
     border-radius: 10px;
     background-color: #fff;
@@ -36,11 +41,22 @@
     background-color: #5a086b;
 }
 
+.btn-primary {
+    background-color: #710A85;
+    border: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #8e24aa;
+}
+
 .delete-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #e53935; /* Rojo */
+    background-color: #e53935;
     color: white;
     border: none;
     width: 30px;
