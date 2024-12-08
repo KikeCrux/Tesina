@@ -1,5 +1,6 @@
 <body>
     <app-header></app-header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <div class="container py-5">
         <h1 class="text-center mb-5" style="font-family: 'Righteous', sans-serif; color: #710A85;">
             Paquetes Disponibles
@@ -102,6 +103,38 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal para detalles del paquete -->
+    <div class="modal fade" id="detallesPaqueteModal" tabindex="-1" aria-labelledby="detallesPaqueteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 20px; background-color: #FFEEA8;">
+                <div class="modal-header" style="background-color: #710A85; color: white; border-radius: 20px 20px 0 0;">
+                    <h5 class="modal-title" id="detallesPaqueteLabel" style="font-family: 'Righteous';">Componentes del Paquete</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div *ngIf="componentes.length > 0; else noComponentes">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let componente of componentes" style="border: none; background-color: #FFF8E1; margin-bottom: 10px; border-radius: 10px;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">{{ componente.nombre_componente }}</span>
+                                    <span class="badge bg-primary text-white">{{ componente.tipo_componente }}</span>
+                                </div>
+                                <div class="text-muted">Cantidad: {{ componente.cantidad }}</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ng-template #noComponentes>
+                        <p class="text-center text-muted" style="font-style: italic;">Este paquete no tiene componentes asociados.</p>
+                    </ng-template>
+                </div>
+                <div class="modal-footer d-flex justify-content-end" style="border-top: none;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
     
 
     <app-footer></app-footer>

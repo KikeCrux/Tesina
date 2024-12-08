@@ -120,6 +120,8 @@ export class PaquetesComponent implements OnInit {
   // Ver los detalles de un paquete
   verDetallesPaquete(paquete: Package): void {
     this.paqueteSeleccionado = paquete;
+  
+    // Llamada al servicio para obtener los componentes del paquete
     this.componentService.getComponentsByPackage(paquete.id_paquete!).subscribe(
       (data) => {
         this.componentes = data;
@@ -129,5 +131,15 @@ export class PaquetesComponent implements OnInit {
         this.componentes = [];
       }
     );
+  
+    // Inicializa el modal de manera segura
+    const modalElement = document.getElementById('detallesPaqueteModal') as HTMLElement;
+    if (modalElement) {
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+      modalInstance.show();
+    } else {
+      console.error('Modal detallesPaqueteModal no encontrado');
+    }
   }
+  
 }
