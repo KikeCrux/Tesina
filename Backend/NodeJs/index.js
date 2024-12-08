@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -32,6 +33,11 @@ app.use('/api/promotions', promotionRoutes);
 app.use('/api/locations', locationRoutes);
 app.use('/api/order-details', orderDetailsRoutes);
 app.use('/api/locations', locationsRoutes);
+
+const writeFileRoutes = require('./routes/writeFile');
+app.use('/api', writeFileRoutes);
+
+app.use(express.json());
 
 // Ruta básica de prueba
 app.get('/', (req, res) => {

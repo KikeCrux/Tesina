@@ -1,0 +1,257 @@
+[
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular)."
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular)."
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)"
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)",
+    "nombre_usuario": "Sin usuario"
+  },
+  {
+    "id_paquete": 10,
+    "nombre_paquete": "Paquete Deluxe",
+    "descripcion": "El paquete más completo, perfecto para fiestas grandes con una decoración impresionante.",
+    "precio_paquete": 1200,
+    "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
+    "nombre_usuario": "Sin usuario"
+  },
+  {
+    "id_paquete": 11,
+    "nombre_paquete": "Paquete Ultra Premium",
+    "descripcion": "Todo lo que deseas de tus sueños",
+    "precio_paquete": 6000,
+    "decoracion": "\"Lo que siempre soñaste\".",
+    "nombre_usuario": "Manuel GonzÃ¡lez "
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 10,
+    "nombre_paquete": "Paquete Deluxe",
+    "descripcion": "El paquete más completo, perfecto para fiestas grandes con una decoración impresionante.",
+    "precio_paquete": 1200,
+    "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "domicilio",
+    "direccion": "En mi casa"
+  },
+  {
+    "id_paquete": 11,
+    "nombre_paquete": "Paquete Ultra Premium",
+    "descripcion": "Todo lo que deseas de tus sueños",
+    "precio_paquete": 6000,
+    "decoracion": "\"Lo que siempre soñaste\".",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 10,
+    "nombre_paquete": "Paquete Deluxe",
+    "descripcion": "El paquete más completo, perfecto para fiestas grandes con una decoración impresionante.",
+    "precio_paquete": 1200,
+    "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "domicilio",
+    "direccion": "Mi casa"
+  },
+  {
+    "id_paquete": 10,
+    "nombre_paquete": "Paquete Deluxe",
+    "descripcion": "El paquete más completo, perfecto para fiestas grandes con una decoración impresionante.",
+    "precio_paquete": 1200,
+    "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 10,
+    "nombre_paquete": "Paquete Deluxe",
+    "descripcion": "El paquete más completo, perfecto para fiestas grandes con una decoración impresionante.",
+    "precio_paquete": 1200,
+    "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "domicilio",
+    "direccion": "Otro lugar"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 9,
+    "nombre_paquete": "Paquete Básico",
+    "descripcion": "Un paquete con los elementos esenciales para una fiesta sencilla y divertida.",
+    "precio_paquete": 300,
+    "decoracion": "\"Cumpleaños de niño/niña\" (un diseño alegre con personajes animados)",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 10,
+    "nombre_paquete": "Paquete Deluxe",
+    "descripcion": "El paquete más completo, perfecto para fiestas grandes con una decoración impresionante.",
+    "precio_paquete": 1200,
+    "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 10,
+    "nombre_paquete": "Paquete Deluxe",
+    "descripcion": "El paquete más completo, perfecto para fiestas grandes con una decoración impresionante.",
+    "precio_paquete": 1200,
+    "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Manuel GonzÃ¡lez ",
+    "metodo_entrega": "tienda"
+  }
+]

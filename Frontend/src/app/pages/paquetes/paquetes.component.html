@@ -1,64 +1,109 @@
 <body>
-  <app-header></app-header>
-  <div class="container py-5">
-      <h1 class="text-center mb-5" style="font-family: 'Righteous', sans-serif; color: #710A85;">Paquetes Disponibles</h1>
-      <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
-              <div class="card shadow-lg border-0" style="border-radius: 15px;">
-                  <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-3">
-                          <h4 class="card-title text-primary" style="font-family: 'Righteous'; color: #710A85;">{{ paquete.nombre_paquete }}</h4>
-                      </div>
-                      <p class="card-text text-muted mb-2">
-                          <i class="fa fa-info-circle me-2" style="color: #710A85;"></i>
-                          {{ paquete.descripcion }}
-                      </p>
-                      <p class="card-text mb-2">
-                          <strong>Decoración:</strong> <br>
-                          <span>{{ paquete.decoracion }}</span>
-                      </p>
-                      <p class="card-text mb-3">
-                          <strong>Precio:</strong> <br>
-                          <span class="text-danger fw-bold">${{ paquete.precio_paquete }} MXN</span>
-                      </p>
-                      <button class="btn btn-primary w-100" (click)="verDetallesPaquete(paquete)" data-bs-toggle="modal" data-bs-target="#detallesPaqueteModal" style="background-color: #710A85; border: none;">
-                          Ver más detalles
-                      </button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <app-header></app-header>
+    <div class="container py-5">
+        <h1 class="text-center mb-5" style="font-family: 'Righteous', sans-serif; color: #710A85;">
+            Paquetes Disponibles
+        </h1>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
+                <div class="card shadow-lg border-0" style="border-radius: 15px;">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title text-primary text-center mb-3" style="font-family: 'Righteous'; color: #710A85;">
+                            {{ paquete.nombre_paquete }}
+                        </h4>
+                        <p class="card-text text-muted mb-2 text-center">
+                            <i class="fa fa-info-circle me-2" style="color: #710A85;"></i>
+                            {{ paquete.descripcion }}
+                        </p>
+                        <p class="card-text mb-2 text-center">
+                            <strong>Decoración:</strong> <br />
+                            <span>{{ paquete.decoracion }}</span>
+                        </p>
+                        <p class="card-text mb-4 text-center">
+                            <strong>Precio:</strong> <br />
+                            <span class="text-danger fw-bold">${{ paquete.precio_paquete }} MXN</span>
+                        </p>
+                        <div class="mt-auto">
+                            <button
+                                class="btn btn-primary w-100 mb-3"
+                                (click)="verDetallesPaquete(paquete)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#detallesPaqueteModal"
+                                style="background-color: #710A85; border: none;"
+                            >
+                                Ver más detalles
+                            </button>
+                            <button
+                                class="btn btn-success w-100"
+                                (click)="adquirirPaquete(paquete)"
+                                style="background-color: #28a745; border: none;"
+                            >
+                                Adquirir Paquete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Modal para método de entrega -->
+        <div class="modal fade" id="metodoEntregaModal" tabindex="-1" aria-labelledby="metodoEntregaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 15px;">
+                    <div class="modal-header" style="background-color: #710A85; color: white; border-radius: 15px 15px 0 0;">
+                        <h5 class="modal-title" id="metodoEntregaLabel" style="font-family: 'Righteous';">
+                            Seleccionar método de entrega
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form (ngSubmit)="guardarMetodoEntrega()">
+                            <div class="form-check mb-3">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    id="tienda"
+                                    value="tienda"
+                                    [(ngModel)]="metodoEntrega"
+                                    name="metodoEntrega"
+                                    required
+                                />
+                                <label class="form-check-label" for="tienda">Recoger en tienda</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    id="domicilio"
+                                    value="domicilio"
+                                    [(ngModel)]="metodoEntrega"
+                                    name="metodoEntrega"
+                                />
+                                <label class="form-check-label" for="domicilio">Entrega a domicilio</label>
+                            </div>
+                            <div *ngIf="metodoEntrega === 'domicilio'" class="mt-3">
+                                <label for="direccion" class="form-label">Dirección de entrega</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="direccion"
+                                    [(ngModel)]="direccion"
+                                    name="direccion"
+                                    placeholder="Ingresa tu dirección"
+                                    required
+                                />
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-4 w-100" style="background-color: #710A85; border: none;">
+                                Confirmar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
-  <!-- Modal para mostrar detalles de los componentes -->
-  <div class="modal fade" id="detallesPaqueteModal" tabindex="-1" aria-labelledby="detallesPaqueteLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content" style="border-radius: 20px; background-color: #FFEEA8;">
-              <div class="modal-header" style="background-color: #710A85; color: white; border-radius: 20px 20px 0 0;">
-                  <h5 class="modal-title" id="detallesPaqueteLabel" style="font-family: 'Righteous';">Componentes del Paquete</h5>
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div *ngIf="componentes.length > 0; else noComponentes">
-                      <ul class="list-group">
-                          <li class="list-group-item" *ngFor="let componente of componentes" style="border: none; background-color: #FFF8E1; margin-bottom: 10px; border-radius: 10px;">
-                              <div class="d-flex justify-content-between align-items-center">
-                                  <span class="fw-bold">{{ componente.nombre_componente }}</span>
-                                  <span class="badge bg-primary text-white">{{ componente.tipo_componente }}</span>
-                              </div>
-                              <div class="text-muted">Cantidad: {{ componente.cantidad }}</div>
-                          </li>
-                      </ul>
-                  </div>
-                  <ng-template #noComponentes>
-                      <p class="text-center text-muted" style="font-style: italic;">Este paquete no tiene componentes asociados.</p>
-                  </ng-template>
-              </div>
-              <div class="modal-footer d-flex justify-content-end" style="border-top: none;">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              </div>
-          </div>
-      </div>
-  </div>
-  <app-footer></app-footer>
-</body>
+    <app-footer></app-footer>
+  </body>
+  
