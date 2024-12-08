@@ -1,17 +1,22 @@
 .table tbody tr {
-    transition: background-color 0.3s ease;
-  }
-  
-  .table tbody tr:hover {
-    background-color: #f9f9f9;
-  }
-  
-  .badge {
-    font-size: 0.9em;
-  }
-  
-  h1{
-    font-family: 'Righteous';
-    color: #710A85;
+  transition: background-color 0.3s ease;
 }
 
+.table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.badge {
+  font-size: 0.9em;
+  padding: 0.5em 1em;
+}
+
+h1 {
+  font-family: 'Righteous';
+  color: #710A85;
+}
+
+.p-3.border {
+  background-color: #f8f9fa;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}

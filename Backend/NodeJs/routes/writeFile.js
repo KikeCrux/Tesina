@@ -22,6 +22,31 @@ router.get('/paquetes', (req, res) => {
     }
 });
 
+// Ruta para eliminar un paquete por su ID
+router.delete('/paquetes/:id', (req, res) => {
+    const paqueteId = parseInt(req.params.id, 10); // Convertir a número
+
+    try {
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).send({ message: 'Archivo no encontrado' });
+        }
+
+        // Leer el archivo actual
+        const paquetes = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
+        // Filtrar el paquete a eliminar
+        const paquetesActualizados = paquetes.filter(paquete => paquete.id_paquete !== paqueteId);
+
+        // Escribir los datos actualizados en el archivo
+        fs.writeFileSync(filePath, JSON.stringify(paquetesActualizados, null, 2), 'utf-8');
+
+        res.status(200).send({ message: 'Paquete eliminado correctamente', id: paqueteId });
+    } catch (error) {
+        console.error('Error al eliminar el paquete:', error);
+        res.status(500).send({ message: 'Error al eliminar el paquete' });
+    }
+});
+
 // Endpoint para guardar datos en el archivo JSON
 router.post('/save-paquetes', (req, res) => {
     const paquetes = req.body; // Datos enviados desde el frontend

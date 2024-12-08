@@ -21,14 +21,29 @@ export class LoginComponent {
   contrasena: string = '';
   errorMessage: string = '';
 
+  private cuentasAdministradores = [
+    { correo: 'admin@gmail.com', contrasena: 'admin123' },
+    { correo: 'kikecrux@gmail.com', contrasena: 'admin456' },
+    { correo: 'piñatasAdmin@egmail.com', contrasena: 'admin789' }
+  ];
+
   constructor(private authService: AuthService, private router: Router) { }
 
   onLogin() {
     this.errorMessage = '';
 
+    const cuentaAdmin = this.cuentasAdministradores.find(
+      admin => admin.correo === this.correo && admin.contrasena === this.contrasena
+    );
+
+    if (cuentaAdmin) {
+      this.router.navigate(['/dashboard']);
+      return;
+    }
+
     this.authService.login(this.correo, this.contrasena).subscribe(
       () => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         this.errorMessage = error.error?.message || 'Error al iniciar sesión. Inténtalo nuevamente.';
@@ -36,3 +51,5 @@ export class LoginComponent {
     );
   }
 }
+
+

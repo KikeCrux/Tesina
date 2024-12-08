@@ -21,6 +21,7 @@ const promotionRoutes = require('./routes/promotionRoutes');
 const locationRoutes = require('./routes/locationRoutes');
 const orderDetailsRoutes = require('./routes/orderDetailsRoutes');
 const locationsRoutes = require('./routes/locationsRoutes');
+const writeFileRoutes = require('./routes/writeFile');
 
 // Usar las rutas
 app.use('/api/auth', authRoutes);
@@ -33,8 +34,6 @@ app.use('/api/promotions', promotionRoutes);
 app.use('/api/locations', locationRoutes);
 app.use('/api/order-details', orderDetailsRoutes);
 app.use('/api/locations', locationsRoutes);
-
-const writeFileRoutes = require('./routes/writeFile');
 app.use('/api', writeFileRoutes);
 
 app.use(express.json());

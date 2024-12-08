@@ -1,5 +1,19 @@
 <h1>Pedidos</h1>
 <div class="container mt-5">
+    <!-- Contenedor de Filtros -->
+    <div class="p-3 border rounded mb-4">
+        <h5 class="text-primary">Filtros</h5>
+        <button class="btn me-2" [ngClass]="estatusSeleccionado === 'Pendiente' ? 'btn-warning' : 'btn-outline-warning'"
+            (click)="cambiarEstatusFiltro('Pendiente')">
+            Pendiente
+        </button>
+        <button class="btn" [ngClass]="estatusSeleccionado === 'Entregado' ? 'btn-success' : 'btn-outline-success'"
+            (click)="cambiarEstatusFiltro('Entregado')">
+            Entregado
+        </button>
+    </div>
+
+    <!-- Tabla de pedidos -->
     <table class="table table-hover align-middle">
         <thead class="table-light">
             <tr>
@@ -8,88 +22,34 @@
                 <th scope="col">Paquete</th>
                 <th scope="col">Estatus</th>
                 <th scope="col">Dirección</th>
-                <th scope="col">Status</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let paquete of paquetesFiltrados">
                 <td><input type="checkbox" /></td>
                 <td>
                     <div class="d-flex align-items-center">
                         <div>
-                            <div class="fw-bold">Enrique Cruz</div>
-                            <div class="text-muted">Mayorista</div>
+                            <div class="fw-bold">{{ paquete.nombre_usuario }}</div>
+                            <div class="text-muted">{{ paquete.metodo_entrega || 'Sin método' }}</div>
                         </div>
                     </div>
                 </td>
-                <td>Paquete Premium<br />
+                <td>
+                    {{ paquete.nombre_paquete }}<br />
                     <span class="text-muted">
-                        <li>Piñata grande</li>
+                        <li>{{ paquete.descripcion }}</li>
                     </span>
-                    <li>Decoracion de superhéroes</li>
+                    <li>{{ paquete.decoracion }}</li>
                 </td>
-                <td><span class="badge bg-success">Approved</span></td>
-                <td>Houston, US</td>
-                <td><span class="text-success">Active</span></td>
                 <td>
-                    <button class="btn btn-sm btn-primary me-2">
-                        <i class="fa-solid fa-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <div class="fw-bold">Enrique Cruz</div>
-                            <div class="text-muted">Mayorista</div>
-                        </div>
-                    </div>
-                </td>
-                <td>Paquete Básico<br />
-                    <span class="text-muted">
-                        <li>Piñata grande</li>
+                    <span class="badge"
+                        [ngClass]="paquete.status === 'Pendiente' ? 'bg-warning text-dark' : 'bg-success'">
+                        {{ paquete.status }}
                     </span>
-                    <li>Decoracion de Cumpleaños de niño/niña</li>
                 </td>
-                <td><span class="badge bg-warning text-dark">Awaiting Approval</span></td>
-                <td>Houston, US</td>
-                <td><span class="text-success">Active</span></td>
-                <td>
-                    <button class="btn btn-sm btn-primary me-2">
-                        <i class="fa-solid fa-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <div class="fw-bold">Enrique Cruz</div>
-                            <div class="text-muted">Mayorista</div>
-                        </div>
-                    </div>
-                </td>
-                <td>Paquete Deluxe<br />
-                    <span class="text-muted">
-                        <li>Piñata grande</li>
-                    </span>
-                    <li>Decoracion Fiesta Vintage</li>
-                </td>
-                <td><span class="badge bg-danger">Rejected</span></td>
-                <td>Houston, US</td>
-                <td><span class="text-success">Active</span></td>
+                <td>{{ paquete.direccion || 'Sin dirección' }}</td>
                 <td>
                     <button class="btn btn-sm btn-primary me-2">
                         <i class="fa-solid fa-pencil"></i>
