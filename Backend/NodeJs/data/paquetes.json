@@ -517,5 +517,15 @@
     "decoracion": "\"Fiesta Vintage\" (decoración clásica y elegante para adultos).",
     "nombre_usuario": "Manuel GonzÃ¡lez ",
     "metodo_entrega": "tienda"
+  },
+  {
+    "id_paquete": 8,
+    "nombre_paquete": "Paquete Premium",
+    "descripcion": "Ideal para celebraciones con temática personalizada y decoración elaborada.",
+    "precio_paquete": 600,
+    "decoracion": "\"Superhéroes\" (Marvel, DC, o cualquier otro tema popular).",
+    "nombre_usuario": "Sin usuario",
+    "metodo_entrega": "domicilio",
+    "direccion": "Calle 435 Puerta Principal"
   }
 ]
